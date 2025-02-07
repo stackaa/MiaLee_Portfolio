@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="icon" type="image/jpeg" href="C:\Users\Lukas\Desktop\DEM\mpl-software\portfolio\Capture d’écran 2025-02-03 201057.png">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mia-Lee | Micro-Influencer & UGC Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Chewy&family=DynaPuff&family=Federo&display=swap');
+
+        header {
+            background-color: #f3dfd7;
+            color: #4a2f2a;
+            padding: 2.5rem;
+            display: flex;
+            align-items: center; /* Keep items aligned */
+            justify-content: center; /* Center the text & menu */
+            gap: 2rem; /* Adds spacing between image and text */
+            text-align: center; /* Ensures text is centered */
+        }
+
+        .header-image {
+            width: 300px; /* Adjust size as needed */
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center the text inside */
+        }
+
+        header h1 {
+            font-family: 'Chewy', sans-serif;
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        nav {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center; /* Center navigation */
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #4a2f2a;
+            text-decoration: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        body {
+            font-family: 'Federo', sans-serif;
+            color: #4a2f2a;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            line-height: 1.8;
+            transition: background-color 0.2s ease;
+        }
+        section {
+            padding: 3rem 0;
+        }
+        h2 {
+            font-family: 'DynaPuff', sans-serif;
+            color: #4a2f2a;
+            font-size: 2rem; /* Same size for "About Me," "Projects," and section headers */
+        }
+        .project-category h2 {
+            font-size: 1.5rem; /* Same size as "Projects" and "About Me" */
+            color: #8b6c6c; /* Slightly lighter brown for distinction */
+        }
+        .about {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: auto;
+        }
+        .about img {
+            width: 300px;
+            height: auto;
+            border-radius: 12px;
+            margin-left: 2rem;
+        }
+        .projects {
+            max-width: 1000px;
+            margin: auto;
+        }
+        .projects h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .video-section {
+            display: flex;
+            justify-content: space-around;
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+        .video-section iframe {
+            width: 30%;
+            height: 300px;
+            border-radius: 12px;
+            border: none;
+        }
+        .analytics {
+            text-align: center;
+        }
+        .analytics img {
+            width: 70%; /* Large image for the Analytics section */
+            max-width: 1200px;
+            height: auto;
+            border-radius: 12px;
+            margin: 2rem auto;
+        }
+        .brands {
+            text-align: center;
+        }
+        .brands img {
+            width: 70%; /* Large image for the Brands section */
+            max-width: 1200px;
+            height: auto;
+            border-radius: 12px;
+            margin: 2rem auto;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #f3dfd7; /* Consistent long line for section separation */
+            margin: 3rem 0;
+        }
+        .contact {
+            text-align: center;
+        }
+        .contact h2 {
+            margin-bottom: 1rem;
+        }
+        .contact a {
+            display: inline-flex;
+            align-items: center;
+            color: #6b4f4f;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0.5rem 1rem;
+        }
+        .contact img {
+            width: 50px;
+            height: 50px;
+            margin: 0.5rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .contact img:hover {
+            transform: scale(1.1);
+        }
+        footer {
+            background-color: #f3dfd7;
+            color: #4a2f2a;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #6b4f4f;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 1rem;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scroll effect for navigation
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    target.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <img src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/Capture d’écran 2025-01-26 1626212.png" 
+             alt="Mia-Lee" class="header-image">
+        
+        <div class="header-content">
+            <h1>MIA-LEE</h1>
+            <p class="header-subtitle">Micro-Influencer & UGC Creator</p>
+            <nav>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#analytics">Analytics</a>
+                <a href="#brands">Brands</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="about" class="about">
+        <div>
+            <h2>About me</h2>
+            <p>I'm Mia-Lee, a 29-year-old content creator and micro-influencer recently relocated in Paris. As part of the beauty and lifestyle niche,I share a variety of engaging contents providing me with a seamless way to integrate your products. Being bilingual in both French and English, I can help you expand your horizons and boost your brand's international presence. So, let's connect!</p>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="projects" class="projects">
+        <h2>My projects</h2>
+
+        <div class="project-category">
+            <h2>Hair</h2>
+            <div class="video-section" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/hair1.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>👭 Sister duo 👭 <br> KITSCH </p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/hair2.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p> 🎃 Halloween concept 🎃  <br> KITSCH </p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/hair3.MOV" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p> 💖 Product demonstration 💖  <br> Forest & Shore</p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/hair4.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p> 🎅 Christmas vlog 🎅 <br> KITSCH</p>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+        <div class="project-category">
+            <h2>Fashion</h2>
+            <div class="video-section" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/fashion1.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p> 💍 Try-on haul 💍 <br> Nola</p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/fashion2.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p> 👜 Unboxing 👜 <br> Sézane</p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/fashion3.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p> ✨ Product integration ✨ <br> Polène </p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/fashion3.MOV" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p> 👜 Unboxing 👜 <br> Sézane</p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="project-category">
+            <h2>Skincare</h2>
+            <div class="video-section" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/skincare1.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p> 🫧 Product demonstration 🫧 <br> Celladix</p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/skincare2.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>💖 Product integration 💖 <br> The Ordinary </p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/skincare3.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>🪞 Product demonstration 🪞 <br> Neuraé</p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/skincare3.MOV" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>🪞 Product demonstration 🪞 <br> Celladix</p>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="project-category">
+            <h2>Lifestyle & Travel</h2>
+            <div class="video-section" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/lifestyle1.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>🚤 Travel activity 🚤</p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/lifestyle2.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>🛍️ Pack my bag 🛍️<br> Polène </p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/lifestyle3.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>🧼 Lifestyle cleaning demonstration 🧼<br> Cillit Bang </p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:\Users\Lukas\Desktop\DEM\mpl-software\portfolio\Tech1.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>☕ Unboxing ☕<br> Nespresso </p>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="project-category">
+            <h2>Makeup           |           Tech</h2>
+            <div class="video-section" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/makeup1.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>🖌️ Product demonstration 🖌️<br> Huda beauty </p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/makeup2.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>🌟 Product demonstration 🌟<br> NYX </p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/Tech2.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>📷 Creator tools 📷<br> Newmowa </p>
+                </div>
+        
+                <div style="width: 22%; text-align: center;">
+                    <video width="100%" height="auto" style="max-height: 400px;" controls>
+                        <source src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/Tech3.MP4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p>📱 Unboxing 📱<br> Apple </p>
+                </div>
+            </div>
+        </div>
+        
+
+    </section>
+    <hr>
+
+    <section id="analytics" class="analytics">
+        <h2>rajouter section restaurant/event?</h2>
+    </section>
+
+    <hr>
+
+    <section id="analytics" class="analytics">
+        <h2>Analytics</h2>
+        <img src="C:\Users\Lukas\Desktop\DEM\mpl-software\portfolio\ANALYTICS.png" alt="analytics">
+    </section>
+
+    <hr>
+
+    <section id="brands" class="brands">
+        <h2>They trusted me</h2>
+        <img src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/brands.png" alt="Brands">
+    </section>
+
+    <hr>
+
+    <section id="contact" class="contact">
+        <h2>Contact me</h2>
+        <a href="mailto:mialee.collab@gmail.com">
+            <img src="C:\Users\Lukas\Desktop\DEM\mpl-software\portfolio\c0b38ea72f73e3f64a90a8b000ab2f05.webp" alt="Email Icon">
+        </a>
+        <a href="https://www.tiktok.com/@r.mialee" target="_blank">
+            <img src="C:\Users\Lukas\Desktop\DEM\mpl-software\portfolio\tiktok-logo-tikok-icon-transparent-tikok-app-logo-free-png.jpg" alt="TikTok Icon">
+        </a>
+        <a href="https://www.instagram.com/r.mialee" target="_blank">
+            <img src="C:/Users/Lukas/Desktop/DEM/mpl-software/portfolio/Instagram.png" alt="Instagram Icon">
+        </a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Mia-Lee | All Rights Reserved</p>
+    </footer>
+</body>
+</html>
