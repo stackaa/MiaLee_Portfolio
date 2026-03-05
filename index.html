@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mia Min | Micro-Influencer & UGC Creator</title>
+
+  <link rel="icon" type="image/jpeg" href="media/Capture d’écran 2025-02-03 201057.png" />
+
+  <!-- (Optional) Disable right-click. Keep only if you really want it. -->
+  <script>
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+  </script>
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Chewy&family=DynaPuff&family=Federo&display=swap");
+
+    /* Base */
+    :root{
+  --header-offset: 300px; /* fallback before JS calculates */
+}
+    body {
+      font-family: "Federo", sans-serif;
+      color: #4a2f2a;
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+      line-height: 1.8;
+      transition: background-color 0.2s ease;
+
+      /* Offset for fixed header */
+      padding-top: var(--header-offset);
+    }
+
+    section {
+      padding: 3rem 0;
+    }
+
+    h2 {
+      font-family: "DynaPuff", sans-serif;
+      color: #4a2f2a;
+      font-size: 2rem;
+    }
+
+    section > h2 {
+       text-align: center;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid #f3dfd7;
+      margin: 3rem 0;
+    }
+
+    /* Header */
+    #site-header {
+      background-color: #f3dfd7;
+      color: #4a2f2a;
+      padding: 1.5rem;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      text-align: center;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+
+      transition: padding 320ms cubic-bezier(.22, 1, .36, 1),
+                  box-shadow 320ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .header-image {
+      width: 200px;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .header-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #site-header h1 {
+      font-size: 2.2rem;
+      letter-spacing: 2px;
+      margin: 0 0 0.5rem 0;
+      font-family: "Chewy", sans-serif;
+      font-weight: 700;
+    }
+
+    .tagline {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin: 0.3rem 0 0.8rem 0;
+      opacity: 0.9;
+    }
+
+    .description {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      max-width: 1000px;
+      margin: 0 auto 1rem auto;
+      opacity: 0.9;
+    }
+
+    .meta {
+      font-size: 1rem;
+      opacity: 0.8;
+      margin: 0;
+    }
+
+    /* Collapsing text block */
+    .header-details {
+      overflow: hidden;
+      max-height: 220px;
+      margin-top: 0.6rem;
+
+      opacity: 1;
+      transform: translateY(0);
+
+      transition:
+        max-height 380ms cubic-bezier(.22, 1, .36, 1),
+        opacity 220ms ease,
+        transform 320ms cubic-bezier(.22, 1, .36, 1),
+        margin 320ms cubic-bezier(.22, 1, .36, 1);
+
+      will-change: max-height, opacity, transform;
+    }
+
+    #site-header.scrolled .header-details {
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(-6px);
+      margin-top: 0;
+      pointer-events: none;
+    }
+
+    /* Nav */
+    #site-header nav {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+
+      transition: margin-top 320ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    #site-header nav a {
+      color: #4a2f2a;
+      text-decoration: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* Dropdown */
+    .nav-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-6px);
+
+      min-width: 210px;
+      background: #fff;
+      border: 1px solid rgba(74, 47, 42, 0.12);
+      border-radius: 12px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.10);
+      padding: 0.5rem;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition: opacity 180ms ease, transform 220ms cubic-bezier(.2, .8, .2, 1);
+      z-index: 2000;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      text-decoration: none;
+      color: #4a2f2a;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(243, 223, 215, 0.6);
+    }
+
+    /* Show on hover (desktop) */
+    .nav-dropdown:hover .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Show on click (JS toggles .open) */
+    .nav-dropdown.open .dropdown-menu {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Sections */
+    .brands,
+
+    .brands img,
+
+    .projects {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .projects > h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .project-category h2 {
+      font-size: 1.5rem;
+      color: #8b6c6c;
+      text-align: center;
+    }
+
+    .video-section {
+      display: flex;
+      justify-content: space-around;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    /* Services accordion */
+    .services {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    .services h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .accordion {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .acc-item {
+      background: #fff;
+      border: 1px solid rgba(74, 47, 42, 0.12);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.04);
+    }
+
+    .acc-summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 1.1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      user-select: none;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .acc-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .acc-icon {
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid rgba(74, 47, 42, 0.75);
+      border-bottom: 2px solid rgba(74, 47, 42, 0.75);
+      transform: rotate(45deg);
+      transition: transform 240ms cubic-bezier(.2, .8, .2, 1);
+      margin-left: 0.5rem;
+    }
+
+    .acc-item[open] .acc-icon {
+      transform: rotate(-135deg);
+    }
+
+    .acc-content {
+      padding: 0 1.2rem 1.1rem 1.2rem;
+      color: rgba(74, 47, 42, 0.92);
+    }
+
+    .acc-content p {
+      margin: 0.6rem 0;
+      line-height: 1.7;
+    }
+
+    .acc-content ul {
+      margin: 0.6rem 0 0.2rem 1.2rem;
+    }
+
+    .acc-content li {
+      margin: 0.35rem 0;
+    }
+
+    .acc-content-wrap {
+      overflow: hidden;
+      height: 0;
+      transition: height 320ms cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .acc-item[open] {
+      border-color: rgba(74, 47, 42, 0.18);
+    }
+
+    /* About */
+    .about {
+        max-width: 800px;
+        margin: auto;
+        text-align: center;
+    }
+
+    .connect-link {
+      color: #6b4f4f;
+      font-weight: 600;
+      text-decoration: underline;
+      transition: opacity 0.2s ease;
+    }
+
+    .connect-link:hover {
+      opacity: 0.7;
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+    }
+
+    .contact h2 {
+      margin-bottom: 1rem;
+    }
+
+    .contact a {
+      display: inline-flex;
+      align-items: center;
+      color: #6b4f4f;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0.5rem 1rem;
+    }
+
+    .contact img {
+      width: 50px;
+      height: 50px;
+      margin: 0.5rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .contact img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    footer {
+      background-color: #f3dfd7;
+      color: #4a2f2a;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    .case-metrics {
+      width: 100%;
+      height: auto;
+      margin-top: 0.5rem;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="site-header">
+    <img src="media/Capture d’écran 2025-01-26 1626212.png" alt="Mia Min" class="header-image" />
+
+    <div class="header-content">
+      <h1>MIA MIN</h1>
+
+      <p class="tagline">UGC Creator for Beauty, Hair &amp; Lifestyle brands</p>
+
+      <div class="header-details">
+        <p class="description">
+          Creative partner delivering refined, performance-led <br> creative built to be ad-ready across platforms.
+        </p>
+        <p class="meta">
+          Bilingual content delivery: English &amp; French<br />
+          📍 Paris, FR based
+        </p>
+      </div>
+
+      <nav>
+        <a href="#brands">Brands</a>
+
+
+        <div class="nav-dropdown">
+          <a href="#projects" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Projects <span class="caret">▾</span>
+          </a>
+          <div class="dropdown-menu" role="menu">
+            <a href="#projects-case-study" role="menuitem">Case Study — KITSCH</a>
+            <a href="#projects-hair" role="menuitem">Hair</a>
+            <a href="#projects-skincare" role="menuitem">Skincare</a>
+            <a href="#projects-beauty" role="menuitem">Beauty</a>
+            <a href="#projects-fashion" role="menuitem">Fashion</a>
+            <a href="#projects-travel" role="menuitem">Travel</a>
+            <a href="#projects-food" role="menuitem">Food &amp; Restaurant</a>
+            <a href="#projects-onsite" role="menuitem">On-site experiences</a>
+            <a href="#projects-home" role="menuitem">Home &amp; Lifestyle</a>
+          </div>
+        </div>
+        <a href="#services">Services</a>
+        <a href="#about">About me</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="brands" class="brands">
+    <h2>Trusted by</h2>
+    <img src="media/brands.png" alt="Brands" />
+  </section>
+
+  <hr />
+
+  <section id="projects" class="projects">
+    <h2>My projects</h2>
+
+
+    <div class="project-category" id="projects-case-study">
+      <h2>Case Study — KITSCH</h2>
+  
+    <div style="max-width:800px; margin:0 auto; text-align:center;">
+      <p style="font-weight:600; font-size:1.1rem;">
+        Ongoing Creative Partnership (2023–Present)
+      </p>
+  
+      <p>
+        Two-year collaboration delivering consistent, performance-ready vertical content across
+        product-led transformations, seasonal activations and lifestyle integrations.
+      </p>
+  
+      <p>
+        Contribution includes proactive ideation, product opportunity identification and ongoing
+        UGC production supporting both organic and paid placements.
+      </p>
+    </div>
+  
+    <div class="video-section" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1.5rem; margin-top:2rem;">
+  
+      <!-- Product-Led Transformation -->
+      <div style="width:22%; min-width:220px; text-align:center;">
+
+        <video width="100%" height="auto" style="max-height:400px;" controls>
+          <source src="media/ProductLedTransformation.mov" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      
+        <!-- Analytics image -->
+        <img src="media/ProductLedAnalytics.png" 
+             alt="Performance metrics"
+             class="case-metrics" />
+      
+        <p>
+          🔥 Product-Led Transformation<br />
+          Thermal Brush Blowout
+        </p>
+      </div>
+  
+      <!-- Routine-Based Integration -->
+      <div style="width:22%; min-width:220px; text-align:center;">
+        <video width="100%" height="auto" style="max-height:400px;" controls>
+          <source src="media/RoutineBasedIntegration.mov" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Analytics image -->
+        <img src="media/RootineBaseAnalytics.png" 
+        alt="Performance metrics"
+        class="case-metrics" />
+        <p>
+          🌿 Routine-Based Integration<br />
+          POV: Natural Hair, But Better
+        </p>
+      </div>
+  
+      <!-- Seasonal Activation -->
+      <div style="width:22%; min-width:220px; text-align:center;">
+        <video width="100%" height="auto" style="max-height:400px;" controls>
+          <source src="media/SeasonalActivation.MOV" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Analytics image -->
+        <img src="media/SeasonalActivationAnalytics.png" 
+        alt="Performance metrics"
+        class="case-metrics" />
+
+        <p>
+          💌 Seasonal Activation<br />
+          Valentine’s Day GRWM
+        </p>
+      </div>
+  
+      <!-- Aspirational Lifestyle Integration -->
+      <div style="width:22%; min-width:220px; text-align:center;">
+        <video width="100%" height="auto" style="max-height:400px;" controls>
+          <source src="media/AspirationalIntegration.MOV" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        <!-- Analytics image -->
+        <img src="media/AspirationalAnalytics.png" 
+        alt="Performance metrics"
+        class="case-metrics" />
+
+        <p>
+          ✨ Aspirational Lifestyle Integration<br />
+          Rustic Vanilla Perfume
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+    <div class="project-category" id="projects-hair">
+      <h2>Hair</h2>
+      <div class="video-section" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+        
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/Hair7.MOV" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>⭐ Product-Led Transformation<br /> L'Oréal - Absolut Repair </p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/TymoStylux.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>✨ Hair Styling Demo<br /> TYMO - Stylux </p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/Loreal.mov" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>💫 Before and After Transformation<br /> L’Oreal - Metal Detox </p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/TymoCurl.MP4" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>💖 Curling Tool Demo<br /> TYMO - Curl Pro Plus </p>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="project-category" id="projects-skincare">
+      <h2>Skincare</h2>
+      <div class="video-section" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/skincare1.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🫧 Skincare Review <br /> Celladix</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/skincare3.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>☕ Skincare Routine Demo ☕<br /> Neuraé</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/skincare2.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🧖‍♀️ ASMR Lifestyle Product Integration <br /> The Ordinary</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/Skincare5.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>💆‍♀️ First Impression <br /> April Skin</p>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="project-category" id="projects-beauty">
+      <h2>Beauty</h2>
+      <div class="video-section" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+        
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/beauty_lancome.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>💄 Product Review<br /> Lancôme</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/makeup1.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>💄 Blush Try-On<br /> Huda beauty</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/makeup2.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>💅 Makeup First Impression<br /> NYX Cosmetics</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/beauty_cacharel.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>💐 Lifestyle Product Focus<br /> Cacharel Fragrance</p>
+        </div>
+
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="project-category" id="projects-fashion">
+      <h2>Fashion</h2>
+      <div class="video-section" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/fashion2.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🛍️ Bag Unboxing<br /> Sézane</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/Fashion1.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>💍 Jewelry Try-on Haul<br /> Nola Amsterdam</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/fashion4.mp4" type="video/mp4" />
+            Your Browser Does not support the video tag.
+          </video>
+          <p>👢 Outfit Styling<br /> UGG</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/fashion5.MOV" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>✨ Outfit Check</p>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="project-category" id="projects-travel">
+      <h2>Travel</h2>
+      <div class="video-section" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/travel1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🏨 Lifestyle Ambiance shots<br /> VIP Yatch Paris</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/travel3.MOV" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🌊 Scenic Lifestyle Shots<br /> Polaris Rent</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/travel2.MOV" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🌿 Aspirational Lifestyle Content<br /> Independent Hotel Property</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/lifestyle1.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🚤 Lifestyle Travel Video<br /> Boat tour company</p>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="project-category" id="projects-food">
+      <h2>Food &amp; Restaurant</h2>
+      <div class="video-section" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/Resto4.MOV" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🍣 Ambience Lifestyle Content<br /> (Launch Event) <br /> Atica (Immersive Restaurant)</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/resto5.MOV" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🍽️ Soft Promo<br /> Les Artizans Montorgueil</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/food1.MOV" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🍣 Lifestyle Product Integration<br /> Sushi Shop (Food Delivery)</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/resto6.MOV" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🍷 Aspirational Lifestyle Content<br /> L'Escargot Montorgueil</p>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="project-category" id="projects-onsite">
+      <h2>On site experiences</h2>
+      <div class="video-section" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+        
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/onsite2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🕶️ Shopping Experience Vlog <br /> Optic Lab</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/onsite1.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>💅 POV Lifestyle video <br /> Nail Salon</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/onsite3.MOV" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🧘‍♀️ Aspirational Lifestyle Video <br /> Cosmo Pilates</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/onsite4.MOV" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🪞 Lifestyle Video<br /> Maison Magnifisens</p>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="project-category" id="projects-home">
+      <h2>Home &amp; Lifestyle</h2>
+      <div class="video-section" style="display:flex; flex-wrap:wrap; justify-content:center; gap:1rem;">
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/Lifestyle5.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🥛 Aesthetic Product Integration<br /> Alpro</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/lifestyle3.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🫧 Vlog-Style Product Integration<br /> Cillit Bang</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/Tech1.MP4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <p>☕ Product Unboxing &amp; Demo<br /> Nespresso</p>
+        </div>
+
+        <div style="width:22%; text-align:center;">
+          <video width="100%" height="auto" style="max-height:400px;" controls>
+            <source src="media/Zeeman.MOV" type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+          <p>🪣 Comedic Product Demo<br /> Zeeman <br /> (french version)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <hr />
+
+  </section>
+
+  <section id="services" class="services">
+    <h2>Services</h2>
+
+    <div class="accordion" id="services-accordion">
+      <details class="acc-item">
+        <summary class="acc-summary">
+          <span>Organic UGC for Brand Channels</span>
+          <span class="acc-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="acc-content">
+          <p>Native-style vertical content designed for brand-owned social platforms.</p>
+          <p><strong>Includes:</strong></p>
+          <ul>
+            <li>Tutorials and routines</li>
+            <li>Soft review formats</li>
+            <li>Trend participation</li>
+            <li>Lifestyle integrations</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="acc-item">
+        <summary class="acc-summary">
+          <span>Paid Media Creative Variations</span>
+          <span class="acc-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="acc-content">
+          <p>Creative iterations developed to support campaign testing and performance optimization.</p>
+          <p><strong>Includes:</strong></p>
+          <ul>
+            <li>Alternate hooks</li>
+            <li>Messaging variations</li>
+            <li>CTA adjustments</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="acc-item">
+        <summary class="acc-summary">
+          <span>Long term creative partnership</span>
+          <span class="acc-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="acc-content">
+          <p>Long-term content collaboration supported by proactive ideation and activation planning.</p>
+          <p>
+            I work closely with brands to identify content gaps, product opportunities, trend moments and calendar-based
+            activations, contributing to creative proposals rather than working from fixed campaign briefs.
+          </p>
+          <p><strong>Includes:</strong></p>
+          <ul>
+            <li>Monthly content batches &amp; Ideation</li>
+            <li>Concept proposals</li>
+            <li>Seasonal &amp; trend-driven activations</li>
+            <li>Product spotlight strategy</li>
+            <li>Multi-platform usage</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="acc-item">
+        <summary class="acc-summary">
+          <span>Bilingual Content Production</span>
+          <span class="acc-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="acc-content">
+          <p>Content delivered in English and French.</p>
+        </div>
+      </details>
+
+      <details class="acc-item">
+        <summary class="acc-summary">
+          <span>Raw Footage Delivery</span>
+          <span class="acc-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="acc-content">
+          <p>Unedited clips delivered for in-house editing and paid media optimization.</p>
+          <p><strong>Includes:</strong></p>
+          <ul>
+            <li>Clean takes</li>
+            <li>Alternate angles</li>
+            <li>Extra B-roll</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <hr />
+
+  <section id="about" class="about">
+    <div>
+      <h2>About me</h2>
+      <p>I’m Mia, a UGC creator specialising in beauty, hair and lifestyle content for modern digital brands.</p>
+      <p>
+        My work combines refined visuals with a strong understanding of paid media and platform-native storytelling.
+        In addition to campaign-based collaborations, I support brands through ongoing creative partnerships —
+        identifying content opportunities, seasonal moments and strategic angles that drive consistent, performance-led output.
+      </p>
+      <p>
+        Over the past years, I’ve collaborated with brands across beauty, fashion, tech and travel, delivering both
+        structured campaign creative and long-term content development.
+      </p>
+      <p>I create primarily in English, with French-language delivery available for EU-based campaigns.</p>
+      <p>
+        If you’re looking for a creative partner who combines aesthetic precision with strategic awareness,
+        <a href="mailto:hello@miamincreative.com" class="connect-link">let’s connect.</a>
+      </p>
+    </div>
+  </section>
+
+  <hr />
+
+  <section id="contact" class="contact">
+    <h2>Contact me</h2>
+    <a href="mailto:hello@miamincreative.com">
+      <img src="media/c0b38ea72f73e3f64a90a8b000ab2f05.webp" alt="Email Icon" />
+    </a>
+    <a href="https://www.tiktok.com/@_mia.min_" target="_blank" rel="noopener">
+      <img src="media/tiktok-logo-tikok-icon-transparent-tikok-app-logo-free-png.jpg" alt="TikTok Icon" />
+    </a>
+    <a href="https://www.instagram.com/__mia.min__" target="_blank" rel="noopener">
+      <img src="media/Instagram.png" alt="Instagram Icon" />
+    </a>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Mia Min | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      /* Smooth scroll (internal anchors only) */
+      document.querySelectorAll("nav a").forEach((a) => {
+        a.addEventListener("click", (e) => {
+            const href = a.getAttribute("href");
+            if (!href || !href.startsWith("#")) return;
+
+            const target = document.querySelector(href);
+            if (!target) return;
+
+            e.preventDefault();
+
+            const header = document.getElementById("site-header");
+            const headerHeight = header ? header.offsetHeight : 0;
+
+            const y =
+            target.getBoundingClientRect().top +
+            window.pageYOffset -
+            headerHeight -
+            8; // small visual spacing
+
+            window.scrollTo({
+            top: y,
+            behavior: "smooth",
+            });
+        });
+        });
+
+      /* Collapse header on scroll */
+      const header = document.getElementById("site-header");
+      if (header) {
+        const enter = 80;
+        const exit = 40;
+
+        const onScroll = () => {
+          const y = window.scrollY || document.documentElement.scrollTop;
+          if (!header.classList.contains("scrolled") && y > enter) header.classList.add("scrolled");
+          else if (header.classList.contains("scrolled") && y < exit) header.classList.remove("scrolled");
+        };
+
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+      }
+
+      /* Services accordion */
+      const accordion = document.getElementById("services-accordion");
+      if (accordion) {
+        accordion.querySelectorAll(".acc-item").forEach((item) => {
+          const content = item.querySelector(".acc-content");
+          if (!content) return;
+
+          // Avoid wrapping twice (hot reload safety)
+          if (content.parentElement?.classList.contains("acc-content-wrap")) return;
+
+          const wrap = document.createElement("div");
+          wrap.className = "acc-content-wrap";
+          content.parentNode.insertBefore(wrap, content);
+          wrap.appendChild(content);
+
+          if (item.hasAttribute("open")) wrap.style.height = content.scrollHeight + "px";
+        });
+
+        const closeItem = (item) => {
+          const wrap = item.querySelector(".acc-content-wrap");
+          const content = item.querySelector(".acc-content");
+          if (!wrap || !content) return;
+
+          wrap.style.height = content.scrollHeight + "px";
+          requestAnimationFrame(() => (wrap.style.height = "0px"));
+          setTimeout(() => item.removeAttribute("open"), 10);
+        };
+
+        const openItem = (item) => {
+          const wrap = item.querySelector(".acc-content-wrap");
+          const content = item.querySelector(".acc-content");
+          if (!wrap || !content) return;
+
+          item.setAttribute("open", "");
+          wrap.style.height = "0px";
+          requestAnimationFrame(() => (wrap.style.height = content.scrollHeight + "px"));
+        };
+
+        accordion.addEventListener("click", (e) => {
+          const summary = e.target.closest("summary");
+          if (!summary) return;
+
+          const item = summary.closest(".acc-item");
+          if (!item) return;
+
+          e.preventDefault();
+
+          // Close others (single-open behavior)
+          accordion.querySelectorAll(".acc-item[open]").forEach((openOne) => {
+            if (openOne !== item) closeItem(openOne);
+          });
+
+          // Toggle clicked
+          if (item.hasAttribute("open")) closeItem(item);
+          else openItem(item);
+        });
+
+        window.addEventListener("resize", () => {
+          accordion.querySelectorAll(".acc-item[open]").forEach((item) => {
+            const wrap = item.querySelector(".acc-content-wrap");
+            const content = item.querySelector(".acc-content");
+            if (wrap && content) wrap.style.height = content.scrollHeight + "px";
+          });
+        });
+      }
+
+      /* Projects dropdown (click + close) */
+      const dd = document.querySelector(".nav-dropdown");
+      const toggle = document.querySelector(".dropdown-toggle");
+
+      if (dd && toggle) {
+        toggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          dd.classList.toggle("open");
+          toggle.setAttribute("aria-expanded", dd.classList.contains("open"));
+        });
+
+        dd.querySelectorAll(".dropdown-menu a").forEach((link) => {
+          link.addEventListener("click", () => {
+            dd.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
+          });
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!dd.contains(e.target)) {
+            dd.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
