@@ -1,0 +1,1 @@
+require("./update-brand-manifests");

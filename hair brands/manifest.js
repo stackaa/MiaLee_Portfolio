@@ -1,0 +1,11 @@
+window.LOGO_MANIFESTS = window.LOGO_MANIFESTS || {};
+window.LOGO_MANIFESTS["hair brands"] = [
+  "677be92405e242e38ea66eb4_tymo-logo.webp",
+  "Kitsch_logo.webp",
+  "Fenty.webp",
+  "kerastase-paris-vector-logo.webp",
+  "LOreal Professionnel logo - Brandlogos.net.svg",
+  "redken-vector-logo.webp",
+  "Sisley logo - Brandlogos.net.svg",
+  "Wella logo - Brandlogos.net.svg"
+];
