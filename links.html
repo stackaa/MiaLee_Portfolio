@@ -87,8 +87,17 @@
     // Where the visitor came from: ?src=tiktok in the bio link wins,
     // otherwise the referring site (in-app browsers often send none)
     const params = new URLSearchParams(location.search);
-    const source = params.get("src") || params.get("utm_source")
+    const referrer = params.get("src") || params.get("utm_source")
       || (document.referrer ? new URL(document.referrer).hostname : "Direct / unknown");
+    // One Linktree serves both socials, but TikTok and Instagram open links
+    // in their own in-app browser, which names the app — so we can still
+    // tell which social the visitor came from
+    const ua = navigator.userAgent;
+    const app = /Instagram/i.test(ua) ? "Instagram"
+      : /musical_ly|BytedanceWebview|TikTok/i.test(ua) ? "TikTok"
+      : /FBAN|FBAV/i.test(ua) ? "Facebook"
+      : "";
+    const source = app ? `${app} app (via ${referrer})` : referrer;
 
     const withTimeout = (promise, ms) =>
       Promise.race([promise, new Promise((resolve) => setTimeout(resolve, ms))]);
