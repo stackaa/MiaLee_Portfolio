@@ -1,10 +1,14 @@
 {
-  "cleanUrls": true,
-  "headers": [
+  "redirects": [
     {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "mia-min-portfolio.vercel.app" }],
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+      "source": "/",
+      "destination": "https://miamincreative.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "destination": "https://miamincreative.com/:path*",
+      "permanent": true
     }
   ]
 }
