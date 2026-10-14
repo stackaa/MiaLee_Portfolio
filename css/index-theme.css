@@ -24,6 +24,11 @@ body[data-theme="espresso"] {
   --font-display: "Cormorant", serif;
   --font-body: "Quicksand", sans-serif;
   --font-brand: "Great Vibes", cursive;
+  /* "MIA MIN" wordmark: one size and spacing on every page and screen
+     (px, so it doesn't follow the root font-size breakpoints); only
+     shrinks on narrow phones so it still fits beside the menu button */
+  --brand-size: clamp(28px, 8.5vw, 36px);
+  --brand-tracking: 0.3em;
   /* square corners on every card/frame/field (client, 2026-10-06);
      only true circles (play badges, round icons) stay round */
   --radius-xl: 0;
@@ -193,8 +198,9 @@ body[data-theme="espresso"] .brand {
   font-style: normal;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.3em; /* widely spaced capitals */
-  font-size: 2.1rem;
+  letter-spacing: var(--brand-tracking);
+  font-size: var(--brand-size);
+  line-height: 1.2;
   color: #FFFFFF; /* pure white (was the inherited cream) */
 }
 
@@ -1921,19 +1927,6 @@ body[data-theme="espresso"] .brand {
   white-space: nowrap;
 }
 
-@media (max-width: 640px) {
-  body[data-theme="espresso"] .brand {
-    font-size: 1.45rem;
-    letter-spacing: 0.2em;
-  }
-}
-
-@media (max-width: 400px) {
-  body[data-theme="espresso"] .brand {
-    font-size: 1.25rem;
-    letter-spacing: 0.16em;
-  }
-}
 
 /* "What I Offer" on a brown section: cream titles/text, light dividers */
 body[data-theme="espresso"] .section-cream .offer-row h4 {
