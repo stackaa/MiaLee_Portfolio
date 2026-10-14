@@ -10,7 +10,6 @@ window.LOGO_MANIFESTS["beauty brands"] = [
   "Huda_Beauty-logo.svg",
   "Logo_NEURAE.webp",
   "medicube logo - Brandlogos.net.svg",
-  "Prada logo.svg",
   "pyunkang-yul.png.webp",
   "The Ordinary logo - Brandlogos.net.svg"
 ];

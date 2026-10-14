@@ -6,6 +6,10 @@
   /* Text colors: change these two to update all text */
   --text-dark: #573731; 
   --text-light: #705b56;
+  --logo-tint: var(--text-dark); /* single color for all brand logos */
+  --logo-fill: #ffffff; /* light fills inside two-tone logos */
+  --logo-tint-on-dark: #ffffff; /* same, for logos on dark sections */
+  --logo-fill-on-dark: #382514;
   --text: var(--text-dark);
   --text-muted: var(--text-light);
   --accent: #c9a79c;
@@ -20,9 +24,9 @@
   --radius-sm: 10px;
   --container: min(1120px, 90vw);
   --transition: 220ms ease;
-  --font-display: "Playfair Display";
+  --font-display: "Fraunces";
   --font-body: "Neue Haas Grotesk";
-  --font-brand: "Brand Font 2";
+  --font-brand: "Great Vibes", cursive;
 }
 
 @font-face {
@@ -233,6 +237,11 @@ body[data-page="lifestyle"] #contact.section {
   align-items: center;
 }
 
+/* Same hero component, mirrored: text first (left), portrait second (right) */
+.hero-grid--reverse {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+}
+
 .hero-portrait {
   border-radius: var(--radius-xl);
   overflow: hidden;
@@ -256,25 +265,13 @@ body[data-page="lifestyle"] #contact.section {
   gap: 0.9rem;
 }
 
-.hero-content .tagline {
-  margin: 0.6rem 0 0.2rem;
-}
-
-.hero-content .tagline:last-child {
-  margin-bottom: 0;
-}
-
-.hero-content .intro {
-  margin: 0;
-}
-
 .hero-marquee {
   grid-column: 1 / -1;
   margin-top: 0.4rem;
   min-width: 0;
 }
 
-body:not([data-page="home"]) .hero {
+body:not([data-page="home"]):not([data-page="ugc"]):not([data-page="influence"]) .hero {
   padding-bottom: 2.5rem;
 }
 
@@ -317,6 +314,37 @@ body:not([data-page="home"]) .hero {
   flex: 0 0 auto;
 }
 
+.logo-marquee__logo--tinted {
+  filter: url(#logo-tint);
+}
+
+.logo-marquee__logo--duo {
+  filter: url(#logo-tint-duo);
+}
+
+.logo-tint-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.logo-tint-ink {
+  flood-color: var(--logo-tint);
+}
+
+.logo-tint-fill {
+  flood-color: var(--logo-fill);
+}
+
+.logo-tint-ink-on-dark {
+  flood-color: var(--logo-tint-on-dark);
+}
+
+.logo-tint-fill-on-dark {
+  flood-color: var(--logo-fill-on-dark);
+}
+
 @keyframes logo-scroll {
   from {
     transform: translate3d(0, 0, 0);
@@ -349,80 +377,16 @@ body:not([data-page="home"]) .hero {
 }
 
 @media (min-width: 901px) {
-  body[data-page="home"] .hero-grid {
+  body[data-page="home"] .hero-grid,
+  body[data-page="ugc"] .hero-grid,
+  body[data-page="influence"] .hero-grid,
+  body[data-page="about"] .hero-grid {
     grid-template-columns: minmax(0, 3fr) minmax(0, 3fr);
   }
 }
 
-body[data-page="home"] .hero-content h1 {
-  font-size: clamp(3rem, 4.6vw, 4.2rem);
-}
-
-body[data-page="home"] .hero-content .tagline {
-  font-size: 1.2rem;
-}
-
-body[data-page="home"] .hero-content .intro {
-  max-width: 620px;
-  font-size: 1.05rem;
-}
-
-body[data-page="hair"] .hero-content .tagline {
-  font-size: 1.2rem;
-}
-
-body[data-page="hair"] .hero-content .intro {
-  max-width: 620px;
-  font-size: 1.05rem;
-}
-
-body[data-page="hair"] .site-header {
-  background: var(--bg-dark);
-}
-
-body[data-page="hair"] .site-footer {
-  background: var(--bg-dark);
-  border-top-color: var(--secondary);
-}
-
-body[data-page="fashion"] .site-header {
-  background: var(--bg-dark);
-}
-
-body[data-page="fashion"] .site-footer {
-  background: var(--bg-light);
-  border-top-color: var(--line);
-}
-
-body[data-page="beauty"] .site-header {
-  background: var(--bg-dark);
-}
-
 body[data-page="beauty"] .logo-marquee {
   --logo-duration: 40s;
-}
-
-body[data-page="beauty"] .site-footer {
-  background: var(--bg-dark);
-  border-top-color: var(--secondary);
-}
-
-body[data-page="about"] .site-header {
-  background: var(--bg-dark);
-}
-
-body[data-page="about"] .site-footer {
-  background: var(--bg-dark);
-  border-top-color: var(--secondary);
-}
-
-body[data-page="lifestyle"] .site-header {
-  background: var(--bg-dark);
-}
-
-body[data-page="lifestyle"] .site-footer {
-  background: var(--bg-dark);
-  border-top-color: var(--secondary);
 }
 
 .split {
@@ -483,10 +447,6 @@ body[data-page="lifestyle"] .site-footer {
 .tagline {
   font-size: 1.05rem;
   font-weight: 500;
-}
-
-.intro {
-  max-width: 520px;
 }
 
 .text-link {
@@ -572,7 +532,8 @@ body[data-page="lifestyle"] .site-footer {
 
 .category-thumb {
   width: 100%;
-  height: 140px;
+  height: auto;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: var(--radius-md);
 }
@@ -598,7 +559,7 @@ body[data-page="lifestyle"] .site-footer {
 }
 
 .case-grid p {
-  font-size: 1.05rem;
+  font-size: 1rem;
   margin-bottom: 0.4rem;
 }
 
@@ -800,7 +761,7 @@ body[data-page="lifestyle"] .site-footer {
   transition: opacity var(--transition), visibility var(--transition);
 }
 
-body[data-page="home"] .site-header:not(.is-scrolled) .brand {
+.site-header:not(.is-scrolled) .brand {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -863,6 +824,79 @@ body[data-page="home"] .site-header:not(.is-scrolled) .brand {
   font-size: 0.8rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  color: var(--text);
+}
+
+/* UGC nav item: hovering (or clicking/tapping) reveals a dropdown of
+   niches (Hair/Beauty/Fashion/Lifestyle) — present on every page */
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.nav-dropdown__toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.6rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), color var(--transition);
+}
+
+.nav-dropdown:hover .nav-dropdown__toggle,
+.nav-dropdown.is-open .nav-dropdown__toggle {
+  color: var(--text);
+}
+
+.nav-dropdown.is-open .nav-dropdown__toggle {
+  transform: rotate(180deg);
+}
+
+.nav-dropdown__menu {
+  position: absolute;
+  top: calc(100% + 0.8rem);
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+  background: var(--bg-light);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+  padding: 0.6rem 0;
+  z-index: 60;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(-50%) translateY(8px);
+  transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-dropdown.is-open .nav-dropdown__menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown__menu a {
+  padding: 0.55rem 1.3rem;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color var(--transition);
+}
+
+.nav-dropdown__menu a:hover,
+.nav-dropdown__menu a.active {
   color: var(--text);
 }
 
@@ -949,15 +983,41 @@ body[data-page="about"] .text-link {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  cursor: pointer; /* no player UI: a click plays/pauses with sound (see initPortfolioVideos in site.js) */
+}
+
+.video-card video:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.video-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
 .project-card.featured {
   align-items: stretch;
+  text-decoration: none;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.project-card.featured:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(43, 43, 43, 0.16);
+}
+
+.project-card.featured:hover .video-card img {
+  transform: scale(1.05);
 }
 
 .project-card.featured .video-card {
   aspect-ratio: auto;
   height: auto;
+  /* 2x the base box radius (--radius-md) for a noticeably softer cover */
+  border-radius: calc(var(--radius-md) * 2);
 }
 
 .project-card.featured .text-link {
@@ -970,12 +1030,16 @@ body[data-page="about"] .text-link {
   border: none;
 }
 
+/* Same proportions as the influence.html hero grid (50/50 above 900px,
+   same column gaps per breakpoint) so the About portrait matches the
+   influence hero portrait size */
 .about-container {
   width: var(--container);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2.5rem;
+  column-gap: 3rem;
+  row-gap: 1.8rem;
   align-items: center;
 }
 
@@ -991,8 +1055,7 @@ body[data-page="about"] .text-link {
   overflow: hidden;
   background: var(--secondary);
   box-shadow: var(--shadow);
-  max-width: 450px;
-  justify-self: center;
+  margin: 1.6rem 0;
 }
 
 .about-image img {
@@ -1034,7 +1097,8 @@ body[data-page="about"] .text-link {
     gap: 1.8rem;
   }
 
-  .hero-portrait {
+  .hero-portrait,
+  .about-image {
     max-height: 380px;
     overflow: hidden;
   }
@@ -1111,10 +1175,6 @@ body[data-page="about"] .text-link {
     padding-top: 1.2rem;
   }
 
-  body[data-page="home"] .hero-contact {
-    display: none;
-  }
-
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1189,16 +1249,13 @@ body[data-page="about"] .text-link {
     display: none;
   }
 
-  .hero-portrait {
+  .hero-portrait,
+  .about-image {
     max-height: 420px;
   }
 
   .hero-content {
     gap: 0.7rem;
-  }
-
-  body[data-page="home"] .hero-content h1 {
-    font-size: 2.6rem;
   }
 
   .hero-contact {
@@ -1234,7 +1291,8 @@ body[data-page="about"] .text-link {
     font-size: 13px;
   }
 
-  .hero-portrait {
+  .hero-portrait,
+  .about-image {
     max-height: 380px;
   }
 
@@ -1270,7 +1328,8 @@ body[data-page="about"] .text-link {
     min-height: 75vh;
   }
 
-  .hero-grid {
+  .hero-grid,
+  .about-container {
     column-gap: 5rem;
   }
 
@@ -1310,7 +1369,8 @@ body[data-page="about"] .text-link {
     min-height: 80vh;
   }
 
-  .hero-grid {
+  .hero-grid,
+  .about-container {
     column-gap: 7rem;
   }
 
@@ -1350,5 +1410,253 @@ body[data-page="about"] .text-link {
 
   .logo-marquee__viewport {
     overflow-x: auto;
+  }
+}
+
+/* Scroll-triggered reveal utility — opt-in via [data-reveal], inert
+   on any page/element that doesn't use it */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------
+   Landing (index) + Media Kit (influence) page components
+--------------------------------------------------------- */
+
+.path-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+.path-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--secondary);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.path-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px rgba(43, 43, 43, 0.16);
+}
+
+.path-card__media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.path-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.path-grid .path-card:first-child .path-card__media img {
+  object-position: center top;
+}
+
+.path-card:hover .path-card__media img {
+  transform: scale(1.05);
+}
+
+.path-card__body {
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  flex: 1;
+  --text: var(--text-dark);
+  --text-muted: var(--text-light);
+  color: var(--text);
+}
+
+.path-card__body h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.6rem;
+}
+
+.path-card__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.path-card__chips span {
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: var(--secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* The chips row takes margin-top: auto, pushing chips + button to the
+   bottom of the card, so both cards' chips and buttons line up regardless
+   of text length above */
+.path-card__body .path-card__chips {
+  margin-top: auto;
+}
+
+.path-card__body .button {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+}
+
+.stat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+.stat-tile {
+  flex: 1 1 240px;
+  max-width: 300px;
+  background: var(--white);
+  border: 1px solid var(--secondary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 1.6rem 1.2rem;
+  text-align: center;
+  --text: var(--text-dark);
+  --text-muted: var(--text-light);
+}
+
+.stat-tile .stat-value {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 2.6vw, 2.4rem);
+  color: var(--text-dark);
+}
+
+.stat-tile .stat-label {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-light);
+}
+
+.stat-footnote {
+  margin-top: 1.2rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.testimonial-card p {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-dark);
+  margin-bottom: 0.7rem;
+}
+
+.testimonial-card cite {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-light);
+}
+
+.offer-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.offer-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  gap: 1.2rem;
+  align-items: baseline;
+  padding: 1.1rem 1.3rem;
+  background: var(--white);
+  border: 1px solid var(--secondary);
+  border-radius: var(--radius-lg);
+  --text: var(--text-dark);
+  --text-muted: var(--text-light);
+}
+
+.offer-row h4 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+}
+
+.offer-row p {
+  margin: 0;
+  color: var(--text-light);
+}
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+/* 4 pillars: 2x2 on tablets and below, single column on small phones */
+@media (max-width: 1100px) {
+  .pillar-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .pillar-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .path-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .offer-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .stat-grid {
+    gap: 0.8rem;
+  }
+
+  .stat-tile {
+    padding: 1.2rem 0.8rem;
   }
 }

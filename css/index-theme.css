@@ -1,0 +1,2122 @@
+/* ---------------------------------------------------------
+   Espresso editorial theme — index.html, influence.html,
+   about.html and ugc.html. Scoped entirely under
+   body[data-theme="espresso"] so hair/beauty/fashion/lifestyle
+   are not affected.
+--------------------------------------------------------- */
+
+body[data-theme="espresso"] {
+  --bg-light: #382514;
+  --bg-dark: #FFFFFF;
+  --white: #FFF5E6;
+  --accent: #FFF5E6;
+  --secondary: #E8D2AE;
+  --gold: #D9B579;
+  --heading-color: #FFFFFF;
+  --line: rgba(255, 245, 230, 0.18);
+  --stat-rule: rgba(87, 55, 49, 0.28); /* hairline above stats on light sections */
+  --stat-gold: #9C7A3D;
+  --why-rule: rgba(255, 245, 230, 0.28); /* divider lines on dark sections */
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  --card-shadow-light: 0 18px 40px rgba(56, 37, 20, 0.08); /* soft card shadow on white sections */
+  --text: #FFF5E6;
+  --text-muted: #E3C9A6;
+  --font-display: "Cormorant", serif;
+  --font-body: "Quicksand", sans-serif;
+  --font-brand: "Great Vibes", cursive;
+  /* square corners on every card/frame/field (client, 2026-10-06);
+     only true circles (play badges, round icons) stay round */
+  --radius-xl: 0;
+  --radius-lg: 0;
+  --radius-md: 0;
+  --radius-sm: 0;
+  background: var(--bg-light);
+}
+
+/* generous, editorial whitespace */
+body[data-theme="espresso"] .section {
+  padding: 5rem 0 6.5rem;
+}
+
+/* these components redundantly re-declare --text/--text-muted,
+   which breaks inheritance from body — redirect them here.
+   .section-beige now sits on the white --bg-dark, so it needs dark
+   text and a darker gold accent instead of the cream/light-gold pair
+   used on the dark (--bg-light) sections. */
+body[data-theme="espresso"] .section-beige,
+body[data-theme="espresso"] .text-white {
+  --text: var(--text-dark);
+  --text-muted: var(--text-light);
+  --gold: #9C7A3D;
+  --heading-color: var(--text-dark);
+  --why-rule: var(--stat-rule); /* list dividers in brown on light sections */
+}
+
+/* #contact.section always keeps the dark --bg-light background
+   (see base rule, higher specificity than .section-beige) — so even
+   though it also carries .section-beige/.text-white, it needs the
+   cream/light-gold pair back, not the dark-on-white pair above */
+body[data-theme="espresso"] #contact.section {
+  background: var(--bg-light);
+  --text: #FFF5E6;
+  --text-muted: #E3C9A6;
+  --gold: #D9B579;
+  --heading-color: #FFFFFF;
+}
+
+/* Main title: display serif, secondary to Parisienne, reserved for
+   the single biggest line on the page */
+body[data-theme="espresso"] h1 {
+  font-family: "Cormorant", serif;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Section titles + card headings: Cormorant, matching h1 */
+body[data-theme="espresso"] h2,
+body[data-theme="espresso"] h3 {
+  font-family: "Cormorant", serif;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+body[data-theme="espresso"] h3 {
+  font-size: 1.9rem;
+}
+
+body[data-theme="espresso"] .path-card__body h3 {
+  font-style: normal;
+}
+
+/* Captions under the niche-page videos: same small-title treatment as the
+   "What I Offer" titles and UGC service names (display serif, bold italic),
+   sized for the narrow video cards instead of the 1.9rem card-heading size */
+body[data-theme="espresso"] .project-card h3 {
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+}
+
+/* UGC videos on every niche page (hair/beauty/fashion/lifestyle): shown
+   bare, no card frame (background, border, shadow, padding) and no brand
+   captions (removed in the markup, client 2026-10-06). The UGC hub's
+   "Featured Work" covers (.featured) keep their frames. */
+body[data-theme="espresso"] .project-card:not(.featured) {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+body[data-theme="espresso"] .project-card:not(.featured) .video-card {
+  background: none;
+}
+
+/* Kitsch case study: videos bare (no card frame), only the stats row
+   gets a small cream frame underneath each video */
+body[data-theme="espresso"][data-page="hair"] #case-study .project-card {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+body[data-theme="espresso"][data-page="hair"] #case-study .video-card {
+  background: none;
+}
+
+/* Stats row under each Kitsch video (likes, comments, sends, reposts,
+   saves): real text + inline SVG icons (was a picture), in a slim
+   square-corner hairline frame, no background. */
+body[data-theme="espresso"][data-page="hair"] .project-metrics-frame {
+  list-style: none;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between; /* spread evenly across the video's width */
+  gap: 0.4rem;
+  padding: 0.3rem 0.55rem; /* slim frame, hugging the row */
+  background: none;
+  border: 1px solid var(--stat-rule);
+  border-radius: 0;
+  color: var(--text-dark);
+}
+
+body[data-theme="espresso"][data-page="hair"] .project-metrics-frame li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: clamp(0.72rem, 0.82vw, 0.8rem);
+  font-variant-numeric: lining-nums;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+body[data-theme="espresso"][data-page="hair"] .project-metrics-frame svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+body[data-theme="espresso"][data-page="hair"] .project-metrics-frame svg[fill="none"] {
+  fill: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Header/footer: always dark, regardless of any legacy per-page
+   override (about.html previously forced these to --bg-dark, which
+   is now white under this theme) */
+body[data-theme="espresso"] .site-header,
+body[data-theme="espresso"] .site-footer {
+  background: var(--bg-light);
+  border-top-color: var(--line);
+}
+
+/* Logo / wordmark: always visible (no more hide-until-scroll). Trying
+   Cormorant capitals instead of the Great Vibes script,
+   2026-10-06 — previous values: "Great Vibes", letter-spacing 0, 2.6rem */
+body[data-theme="espresso"] .brand {
+  font-family: "Cormorant", serif;
+  font-style: normal;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3em; /* widely spaced capitals */
+  font-size: 2.1rem;
+  color: #FFFFFF; /* pure white (was the inherited cream) */
+}
+
+body[data-theme="espresso"] .site-header .brand {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Nav links: uppercase Quicksand, ~2-3px tracking */
+body[data-theme="espresso"] .nav-links a,
+body[data-theme="espresso"] .nav-dropdown__menu a {
+  letter-spacing: 0.16em;
+}
+
+/* UGC niches dropdown (Hair/Beauty/Fashion/Lifestyle): white */
+body[data-theme="espresso"] .nav-dropdown__menu a {
+  color: #FFFFFF;
+}
+
+body[data-theme="espresso"] .nav-dropdown__toggle {
+  color: #FFFFFF;
+}
+
+/* Buttons: outline default, filled cream primary CTA (inverse of each other) */
+body[data-theme="espresso"] .button,
+body[data-theme="espresso"] .button-outline {
+  font-family: "Quicksand", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+
+/* Path-card headings + influence.html stat labels keep Bodoni Moda SC;
+   every other all-caps element reverted to the inherited body font */
+body[data-theme="espresso"] .stat-tile .stat-label,
+body[data-theme="espresso"] .path-card__body h3 {
+  font-family: "Bodoni Moda SC", serif;
+}
+
+body[data-theme="espresso"] .path-card__body h3 {
+  font-size: 1.35rem;
+}
+
+body[data-theme="espresso"] .button {
+  background: #FFF5E6;
+  color: #46301B;
+  border: 1px solid #FFF5E6;
+  box-shadow: none;
+}
+
+body[data-theme="espresso"] .button:hover {
+  background: transparent;
+  color: #46301B;
+  border-color: #46301B;
+}
+
+body[data-theme="espresso"] .button-outline {
+  background: transparent;
+  color: #FFF5E6;
+  border: 1px solid #FFF5E6;
+}
+
+body[data-theme="espresso"] .button-outline:hover {
+  background: #FFF5E6;
+  color: #46301B;
+}
+
+/* Header CTA reads as the outline variant */
+body[data-theme="espresso"] .header-cta {
+  background: transparent;
+  color: #FFF5E6;
+  border: 1px solid #FFF5E6;
+}
+
+body[data-theme="espresso"] .header-cta:hover {
+  background: #FFF5E6;
+  color: #46301B;
+}
+
+/* Hero meta (UGC hero: "English & French", "Paris, France"):
+   plain text on the hero, no chip background (client, 2026-10-06) */
+body[data-theme="espresso"] .hero-meta {
+  column-gap: 2.6rem;
+}
+
+body[data-theme="espresso"] .hero-meta span {
+  background: none;
+  padding: 0;
+  color: var(--gold); /* the light gold accent (eyebrows, numbers) */
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+}
+
+/* Hero contact icon + mail link hover states (originally hardcoded rose tones) */
+body[data-theme="espresso"] .hero-tiktok {
+  border-color: #FFF5E6;
+}
+
+body[data-theme="espresso"] .hero-tiktok img {
+  filter: brightness(0) invert(1);
+}
+
+body[data-theme="espresso"] .hero-tiktok:hover {
+  background: #FFF5E6;
+  border-color: #FFF5E6;
+}
+
+body[data-theme="espresso"] .hero-tiktok:hover img {
+  filter: none;
+}
+
+body[data-theme="espresso"] .hero-mail-link {
+  font-weight: 300;
+}
+
+body[data-theme="espresso"] .hero-mail-link:hover {
+  color: #FFF5E6;
+  opacity: 0.7;
+}
+
+/* Contact pill links: outline tied to ambient text color, since the
+   base rule's --bg-light fill no longer matches every section */
+body[data-theme="espresso"] .contact-links a {
+  background: transparent;
+  border-color: currentColor;
+}
+
+body[data-theme="espresso"] .contact-links a:hover {
+  background: #FFF5E6;
+  color: #46301B;
+  border-color: #FFF5E6;
+}
+
+/* Icon recolored to match the cream link text beside it; on hover the
+   text flips to dark brown, so drop the filter to reveal the icon's
+   native dark-brown fill instead. */
+body[data-theme="espresso"] .contact-links img {
+  filter: brightness(0) invert(1);
+}
+
+body[data-theme="espresso"] .contact-links a:hover img {
+  filter: none;
+}
+
+/* Contact form */
+body[data-theme="espresso"] .contact-form {
+  max-width: 620px;
+  margin: 0 auto 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+body[data-theme="espresso"] .contact-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+body[data-theme="espresso"] .contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+body[data-theme="espresso"] .contact-form__field span {
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+}
+
+body[data-theme="espresso"] .contact-form input,
+body[data-theme="espresso"] .contact-form textarea {
+  background: var(--bg-light);
+  border: 1px solid rgba(255, 245, 230, 0.4);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.9rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.1rem;
+  color: var(--text);
+  resize: vertical;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+body[data-theme="espresso"] .contact-form input::placeholder,
+body[data-theme="espresso"] .contact-form textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+body[data-theme="espresso"] .contact-form input:focus,
+body[data-theme="espresso"] .contact-form textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--bg-light);
+}
+
+body[data-theme="espresso"] .contact-form button {
+  align-self: flex-start;
+  margin-top: 0.4rem;
+  cursor: pointer;
+}
+
+body[data-theme="espresso"] .contact-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+body[data-theme="espresso"] .contact-form__status {
+  margin: 0;
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.92rem;
+}
+
+body[data-theme="espresso"] .contact-form__status:empty {
+  display: none;
+}
+
+body[data-theme="espresso"] .contact-form__status.is-success {
+  color: var(--gold);
+}
+
+body[data-theme="espresso"] .contact-form__status.is-error {
+  color: #E8A0A0;
+}
+
+@media (max-width: 640px) {
+  body[data-theme="espresso"] .contact-form__row {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
+
+/* ---------------------------------------------------------
+   Editorial refinements — high-fashion magazine meets portfolio
+--------------------------------------------------------- */
+
+/* Section titles: centered masthead treatment, gold display serif,
+   thin rule beneath — the recurring "magazine section marker" */
+body[data-theme="espresso"] .section-head {
+  text-align: center;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body[data-theme="espresso"] .section-head h2 {
+  display: inline-block;
+  font-family: "Bodoni Moda SC", serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  color: var(--heading-color);
+  letter-spacing: 0;
+  padding-bottom: 1.2rem;
+  position: relative;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+body[data-theme="espresso"] .section-head h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 1px;
+  background: var(--heading-color);
+}
+
+/* Hair "Case Study: Kitsch": heading, divider and tagline left-aligned
+   (client request) instead of the usual centred section head */
+body[data-theme="espresso"] #case-study .section-head {
+  text-align: left;
+  max-width: none;
+  margin-left: 0;
+}
+
+body[data-theme="espresso"] #case-study .section-head h2::after {
+  left: 0;
+  transform: none;
+}
+
+/* Kitsch key numbers under the tagline: value over label (dd is placed
+   first visually), thin brown lines between, same number/label type as
+   the influence.html stats */
+body[data-theme="espresso"] .case-stats {
+  display: flex;
+  margin: clamp(0.7rem, 1.8svh, 1.2rem) 0 0;
+}
+
+body[data-theme="espresso"] .case-stats > div {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 0 clamp(0.9rem, 2vw, 1.4rem);
+}
+
+body[data-theme="espresso"] .case-stats > div:first-child {
+  padding-left: 0;
+}
+
+body[data-theme="espresso"] .case-stats > div + div {
+  border-left: 1px solid var(--stat-rule);
+}
+
+body[data-theme="espresso"] .case-stats dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-variant-numeric: lining-nums;
+  font-size: clamp(1.6rem, 2.3vw, 2rem);
+  line-height: 1;
+  color: var(--gold);
+}
+
+body[data-theme="espresso"] .case-stats dt {
+  margin-top: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text);
+}
+
+/* Personal-branding statement (sits after the trusted-by section) */
+body[data-theme="espresso"] .branding-copy {
+  max-width: 620px;
+  margin: 1.2rem auto 0;
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: var(--text);
+}
+
+/* "Read more" link: arrow nudges right on hover */
+body[data-theme="espresso"] .read-more-link .arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+body[data-theme="espresso"] .read-more-link:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Taglines (e.g. "Ongoing Creative Partnership" on hair.html): readable
+   display serif italic, same treatment as the "What I Offer" titles */
+body[data-theme="espresso"] .tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+body[data-theme="espresso"] .section-head .tagline {
+  font-size: 1.35rem;
+  margin-top: 0.7rem;
+  color: var(--text);
+}
+
+/* Every page: fade the brand mark + main content in on load (not the nav) */
+@keyframes espresso-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+body[data-theme="espresso"] .site-header .brand {
+  animation: espresso-fade-in 2s ease-out both;
+}
+
+body[data-theme="espresso"] .hero-content,
+body[data-theme="espresso"] .about-text {
+  animation: espresso-fade-in 2.2s ease-out 0.3s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-theme="espresso"] .site-header .brand,
+  body[data-theme="espresso"] .hero-content,
+  body[data-theme="espresso"] .about-text {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hero: monumental display name, gold script signature beneath */
+body[data-theme="espresso"] .hero-content h1 {
+  font-family: "Cormorant", serif;
+  font-size: clamp(2.2rem, 3.4vw, 3rem);
+  font-weight: 400;
+  color: var(--heading-color);
+  letter-spacing: 0.01em;
+}
+
+body[data-theme="espresso"] .hero-content .hero-subline {
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  text-transform: none;
+  letter-spacing: 0.08em;
+  color: var(--heading-color);
+  opacity: 0.8;
+  margin-top: 0.9rem;
+}
+
+/* Longer intro paragraph in the influence.html hero: same look as the
+   subline, with tighter tracking and more leading for readability */
+body[data-theme="espresso"] .hero-content .hero-intro {
+  letter-spacing: 0.02em;
+  line-height: 1.8;
+  margin-top: 1.1rem;
+}
+
+/* Same treatment as the home hero's h1 — one heading font/size/color
+   system sitewide, not a page-specific variant */
+body[data-theme="espresso"] .about-text h1 {
+  font-family: "Cormorant", serif;
+  font-size: clamp(2.2rem, 3.4vw, 3rem);
+  font-weight: 400;
+  color: var(--heading-color);
+  letter-spacing: 0.01em;
+  text-transform: uppercase; /* matches the uppercase section titles */
+}
+
+body[data-theme="espresso"] .about-text p {
+  color: #FFFFFF;
+}
+
+/* UGC Services: photo and list top-aligned; site.js (initServicesOffset)
+   adds a top margin so the list sits a little above centre against the
+   photo */
+body[data-theme="espresso"] #services .split {
+  align-items: start;
+}
+
+
+/* Line under the UGC services list: "LANGUAGE: English or French",
+   small tracked label like the contact-form labels */
+body[data-theme="espresso"] .services-language {
+  margin: 0;
+  text-align: right; /* lines up with the right edge of the list (chevrons) */
+  font-size: 1rem;
+  color: var(--text);
+}
+
+body[data-theme="espresso"] .services-language span {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-right: 0.35rem;
+}
+
+/* "Services" heading (about.html + ugc.html split layout) matches
+   the same masthead font config as the other section headings */
+body[data-theme="espresso"] .split-content h2 {
+  font-family: "Bodoni Moda SC", serif;
+  font-weight: 400;
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--heading-color);
+}
+
+/* UGC service accordion titles match the influence.html "What I Offer"
+   titles (.offer-row h4): display serif, italic, bold */
+body[data-theme="espresso"] .services-list summary {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.1rem; /* same size as the influence.html "What I Offer" titles (.offer-row h4) */
+}
+
+/* UGC "Services" accordion as plain rows (no boxes): thin lines divide
+   the services, same treatment as the influence "What I Offer" list */
+body[data-theme="espresso"] .services-list {
+  gap: 0;
+}
+
+body[data-theme="espresso"] .services-list details {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 1.15rem 0.25rem;
+}
+
+body[data-theme="espresso"] .services-list details + details {
+  border-top: 1px solid var(--why-rule);
+}
+
+/* Eyebrow kickers: wider tracking, gold on the hero, trailing hairline */
+body[data-theme="espresso"] .eyebrow {
+  letter-spacing: 0.3em;
+}
+
+body[data-theme="espresso"] .hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  color: var(--gold);
+}
+
+body[data-theme="espresso"] .hero .eyebrow::after {
+  content: "";
+  flex: 0 0 48px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+/* Path cards: sharp editorial corners, subtle warm image grade */
+body[data-theme="espresso"] .path-card__media {
+  background: var(--bg-light);
+}
+
+/* Path card photos: shown in their original colour (no B&W or grade);
+   the zoom on hover from styles.css stays */
+body[data-theme="espresso"] .path-card__media img {
+  filter: none;
+}
+
+/* Path card frame, buttons and chips: always in their original warm
+   cream/sand + brown, no cooler "at rest" version that switches on hover */
+body[data-theme="espresso"] .path-card .button {
+  background: #FFF5E6;
+  border-color: #46301B; /* brown outline so it reads as a button on the cream card */
+  color: #46301B;
+}
+
+/* Tags sit right under the description (not pushed to the card bottom);
+   the button takes the spare space instead, so both buttons still line up */
+body[data-theme="espresso"] .path-card__body .path-card__chips {
+  margin-top: -0.35rem;
+}
+
+body[data-theme="espresso"] .path-card__body .button {
+  margin-top: auto;
+}
+
+/* Path-card tags ("13.2K TikTok Followers", "English & French"): plain
+   text, no pill background (client, 2026-10-06) */
+body[data-theme="espresso"] .path-card__chips span {
+  background: none;
+  padding: 0;
+  color: #46301B;
+}
+
+body[data-theme="espresso"] .path-card {
+  background: var(--white); /* warm cream #FFF5E6 (was pure white) */
+  border-color: var(--white);
+}
+
+/* On a white section the light frame would fade out: outline it with
+   the same brown hairline used for the stats/offer rows, and a softer
+   shadow than the one tuned for the dark sections */
+body[data-theme="espresso"] .section-beige .path-card {
+  border-color: var(--stat-rule);
+  box-shadow: var(--card-shadow-light);
+}
+
+/* Hero photos: shown in their original colour, no grade or B&W filter */
+body[data-theme="espresso"] .hero-portrait img {
+  filter: none;
+}
+
+/* Buttons, contact link, menu toggle, hero tags: square corners like the
+   cards (no rounded pills) */
+body[data-theme="espresso"] .button,
+body[data-theme="espresso"] .button-outline,
+body[data-theme="espresso"] .contact-links a,
+body[data-theme="espresso"] .nav-toggle {
+  border-radius: 0;
+}
+
+/* Testimonials: oversized display quotation mark, gold, understated */
+body[data-theme="espresso"] .testimonial-card {
+  position: relative;
+  /* No fill: the card sits straight on the dark section, keeping its
+     outline; text switches to the cream/light-gold pair for dark grounds */
+  background: none;
+  box-shadow: var(--shadow); /* soft shadow like the other cards on dark sections */
+  --text: #FFF5E6;
+  --text-muted: #E3C9A6;
+}
+
+body[data-theme="espresso"] .testimonial-card p {
+  color: var(--text);
+}
+
+body[data-theme="espresso"] .testimonial-card cite {
+  color: var(--text-muted);
+}
+
+body[data-theme="espresso"] .testimonial-card::before {
+  content: "\201C";
+  position: absolute;
+  top: 0.5rem;
+  left: 1.1rem;
+  font-family: "Playfair Display SC", serif;
+  font-size: 3.6rem;
+  line-height: 1;
+  color: #D9B579; /* light gold, readable on the dark section */
+  opacity: 0.5;
+}
+
+body[data-theme="espresso"] .testimonial-card p {
+  padding-top: 1.3rem;
+}
+
+/* English translation under a French quote: smaller, muted, upright */
+body[data-theme="espresso"] .testimonial-card p.testimonial-translation {
+  padding-top: 0;
+  margin-top: -0.35rem;
+  font-size: 0.88rem;
+  font-style: normal;
+  color: var(--text-muted);
+  opacity: 0.85;
+}
+
+/* Trusted-by logo marquee: white ground + brown text, same treatment
+   as the "Behind the Craft" section (.section-beige) — logos kept in
+   their original brand colors, alternating scroll direction per row
+   (.logo-marquee--reverse in the markup). Gap/spacing/duration are the
+   shared, un-overridden .logo-marquee defaults — same plain CSS-driven
+   animation as the hero brand strip on hair.html etc., so the scroll
+   never gets a JS-triggered mid-animation duration change (that was
+   causing a visible stutter on load). A single row since 2026-10-02
+   (client's must-see brands only).
+
+   Each logo gets its own width (inline --w, in px at desktop) instead of
+   a shared fixed box: a shared box left narrow logos floating in empty
+   space, so the gaps looked uneven. --w was set by eye-balanced area
+   (proportional to the square root of the logo's aspect ratio), with a
+   boost for logos that read small (Cacharel, Monopoly GO). Height follows
+   the image's own ratio, so the visible gap between logos is exactly
+   --logo-gap. --logo-unit scales the whole row down on smaller screens. */
+body[data-theme="espresso"] .logo-marquee-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.5rem, 3.4vw, 2.5rem);
+}
+
+/* Logo bands (home + UGC niche pages): logos stay aligned with the content column, but
+   the strip bleeds out into the empty side margins by --logo-fade on each
+   side, and the fade in/out happens entirely inside that margin. The bleed
+   is capped at 90% of the side margin so it never reaches the screen edge.
+   A mask, not a colour overlay, so it works on any background. */
+body[data-theme="espresso"] .logo-marquee--trusted .logo-marquee__viewport,
+body[data-theme="espresso"] .hero-marquee .logo-marquee__viewport {
+  --logo-fade: min(96px, calc((100vw - var(--container)) / 2 * 0.9));
+  width: calc(100% + 2 * var(--logo-fade));
+  margin-inline: calc(-1 * var(--logo-fade));
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--logo-fade), #000 calc(100% - var(--logo-fade)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--logo-fade), #000 calc(100% - var(--logo-fade)), transparent);
+}
+
+/* "Back" button (injected by site.js where it applies): floats at the
+   top-left just under the fixed header and stays there while scrolling.
+   No box; site.js adds .is-on-light when the background underneath is
+   light, switching the text from cream to brown ink. */
+body[data-theme="espresso"] .back-bar {
+  position: fixed;
+  top: var(--back-top, calc(var(--header-height) + 14px));
+  left: calc((100vw - var(--container)) / 2);
+  z-index: 45;
+}
+
+body[data-theme="espresso"] .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+  transition: color var(--transition), text-shadow var(--transition), opacity var(--transition);
+  opacity: 0.9;
+}
+
+body[data-theme="espresso"] .back-bar.is-on-light .back-link {
+  color: var(--text-dark);
+  text-shadow: 0 1px 6px rgba(255, 255, 255, 0.6);
+}
+
+body[data-theme="espresso"] .back-link:hover,
+body[data-theme="espresso"] .back-link:focus-visible {
+  opacity: 1;
+}
+
+body[data-theme="espresso"] .back-link .arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+body[data-theme="espresso"] .back-link:hover .arrow {
+  transform: translateX(-4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-theme="espresso"] .back-link .arrow {
+    transition: none;
+  }
+}
+
+/* Home brand band: much tighter top/bottom padding than a regular
+   section (5rem / 6.5rem), it's a thin strip between hero and story */
+body[data-theme="espresso"] #brands.section {
+  padding: clamp(1.75rem, 3.5vw, 2.75rem) 0;
+}
+
+body[data-theme="espresso"] .logo-marquee--trusted {
+  --logo-unit: 0.595px; /* 15% smaller (was 0.7px) */
+}
+
+body[data-theme="espresso"] .logo-marquee--trusted .logo-marquee__logo {
+  width: calc(var(--w, 120) * var(--logo-unit));
+  height: auto;
+}
+
+body[data-theme="espresso"] .logo-marquee--reverse .logo-marquee__track {
+  animation-direction: reverse;
+}
+
+@media (min-width: 640px) {
+  body[data-theme="espresso"] .logo-marquee--trusted {
+    --logo-unit: 0.7225px; /* 15% smaller (was 0.85px) */
+  }
+}
+
+@media (min-width: 1024px) {
+  body[data-theme="espresso"] .logo-marquee--trusted {
+    --logo-unit: 0.85px; /* 15% smaller (was 1px) */
+  }
+}
+
+/* Logos sitting on the dark espresso sections use the cream ink */
+body[data-theme="espresso"] .section-cream .logo-marquee__logo--tinted {
+  filter: url(#logo-tint-on-dark);
+}
+
+body[data-theme="espresso"] .section-cream .logo-marquee__logo--duo {
+  filter: url(#logo-tint-on-dark-duo);
+}
+
+/* Niche-page hero brand strip (hair/beauty/fashion/lifestyle): sits
+   straight on the espresso hero, so its logos use the on-dark ink (white)
+   from the .section-cream rules above. */
+/* Tighter space above the niche logo strip (was 2-3rem) and below it, at
+   the bottom of the hero (was 2.5rem from styles.css) */
+body[data-theme="espresso"] .hero-marquee {
+  margin-top: clamp(1.1rem, 2.2vw, 1.6rem);
+}
+
+/* Niche heroes: no screen-height minimum (it padded extra space under the
+   logos on tall screens), and bottom padding matched to the gap above the
+   strip (measured: 58px @1440, 50 @1024, 46 @768, 44 @500), so the space
+   photo -> logos equals logos -> end of section. Selector out-specifies the
+   2.5rem rule in styles.css. */
+body[data-theme="espresso"]:is([data-page="hair"], [data-page="beauty"], [data-page="fashion"], [data-page="lifestyle"]) section.hero.section-cream {
+  min-height: auto;
+  padding-bottom: min(calc(36px + 1.5vw), 58px);
+}
+
+/* Niche-page logo strips (hair/beauty/fashion/lifestyle): one shared,
+   compact box size (smaller than the home page band) with a fixed height
+   (object-fit: contain) so tall/square logos don't make one niche's strip
+   taller than another's. */
+body[data-theme="espresso"] .hero-marquee .logo-marquee {
+  --logo-width: 76px;
+  --logo-height: 42px;
+}
+
+@media (min-width: 640px) {
+  body[data-theme="espresso"] .hero-marquee .logo-marquee {
+    --logo-width: 88px;
+    --logo-height: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  body[data-theme="espresso"] .hero-marquee .logo-marquee {
+    --logo-width: 102px;
+    --logo-height: 54px;
+  }
+}
+
+/* Niche-page logo strips: each logo gets its own width so they all carry
+   similar visual weight (same approach as the home band). Widths come from
+   measuring each file's visible ink, ignoring transparent padding:
+   wordmarks share a roughly equal ink area, round/square emblems get a
+   larger area so their small text stays readable, with height/width caps.
+   Negative margins equal to each file's transparent padding make only the
+   visible logo take up space (keeps the strip height and gaps even).
+   Units are px at desktop, scaled down on smaller screens. */
+body[data-theme="espresso"] .hero-marquee .logo-marquee {
+  --niche-logo-unit: 0.745px;
+}
+
+@media (min-width: 640px) {
+  body[data-theme="espresso"] .hero-marquee .logo-marquee {
+    --niche-logo-unit: 0.863px;
+  }
+}
+
+@media (min-width: 1024px) {
+  body[data-theme="espresso"] .hero-marquee .logo-marquee {
+    --niche-logo-unit: 1px;
+  }
+}
+
+body[data-theme="espresso"] .hero-marquee .logo-marquee__logo {
+  height: auto;
+}
+
+/* Same strip height on every niche page, whatever its tallest logo */
+body[data-theme="espresso"] .hero-marquee .logo-marquee__track {
+  min-height: calc(66 * var(--niche-logo-unit));
+}
+
+body[data-theme="espresso"][data-page="hair"] .hero-marquee .logo-marquee__logo[src*="677be92405e242e38ea66eb4_tymo-logo"] { width: calc(127.4 * var(--niche-logo-unit)); margin: calc(-21.6 * var(--niche-logo-unit)) calc(-23.3 * var(--niche-logo-unit)) calc(-21.2 * var(--niche-logo-unit)) calc(-23.1 * var(--niche-logo-unit)); }
+body[data-theme="espresso"][data-page="hair"] .hero-marquee .logo-marquee__logo[src*="Kitsch_logo"] { width: calc(118.1 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="hair"] .hero-marquee .logo-marquee__logo[src*="Fenty"] { width: calc(109.9 * var(--niche-logo-unit)); margin: 0 0 0 0; }
+body[data-theme="espresso"][data-page="hair"] .hero-marquee .logo-marquee__logo[src*="kerastase-paris-vector-logo"] { width: calc(71.9 * var(--niche-logo-unit)); margin: calc(-1.3 * var(--niche-logo-unit)) calc(-1.2 * var(--niche-logo-unit)) 0 calc(-0.7 * var(--niche-logo-unit)); } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="hair"] .hero-marquee .logo-marquee__logo[src*="Professionnel"] { width: calc(88.4 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="hair"] .hero-marquee .logo-marquee__logo[src*="redken-vector-logo"] { width: calc(99.6 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="hair"] .hero-marquee .logo-marquee__logo[src*="Wella"] { width: calc(71.6 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="hair"] .hero-marquee .logo-marquee__logo[src*="authentic-beauty-concept-logo"] { width: calc(68.4 * var(--niche-logo-unit)); margin: 0 calc(-1.2 * var(--niche-logo-unit)) 0 0; } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="hair"] .hero-marquee .logo-marquee__logo[src*="taft-logo"] { width: calc(70.0 * var(--niche-logo-unit)); margin: 0 0 0 0; }
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="27_1"] { width: calc(129.2 * var(--niche-logo-unit)); margin: calc(-51.7 * var(--niche-logo-unit)) calc(-25.1 * var(--niche-logo-unit)) calc(-52.7 * var(--niche-logo-unit)) calc(-25.8 * var(--niche-logo-unit)); }
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="aprilskin_sns"] { width: calc(150.5 * var(--niche-logo-unit)); margin: calc(-31.4 * var(--niche-logo-unit)) calc(-14.7 * var(--niche-logo-unit)) calc(-31.4 * var(--niche-logo-unit)) calc(-14.7 * var(--niche-logo-unit)); }
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="cacharel-paris-vector-logo"] { width: calc(133.2 * var(--niche-logo-unit)); margin: calc(-49.2 * var(--niche-logo-unit)) calc(-8.6 * var(--niche-logo-unit)) calc(-49.2 * var(--niche-logo-unit)) calc(-8.6 * var(--niche-logo-unit)); } /* boosted 1.2x */ /* boosted 1.2x */
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="celladixlogo"] { width: calc(99.4 * var(--niche-logo-unit)); margin: calc(-2.3 * var(--niche-logo-unit)) calc(-1.4 * var(--niche-logo-unit)) calc(-1.0 * var(--niche-logo-unit)) calc(-2.5 * var(--niche-logo-unit)); }
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="fresh-inc-logo-vector"] { width: calc(92.9 * var(--niche-logo-unit)); margin: calc(-29.9 * var(--niche-logo-unit)) calc(-3.7 * var(--niche-logo-unit)) calc(-30.4 * var(--niche-logo-unit)) calc(-3.7 * var(--niche-logo-unit)); } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="First_Aid_Beauty_Logo"] { width: calc(133.1 * var(--niche-logo-unit)); margin: 0 calc(-31.6 * var(--niche-logo-unit)) 0 calc(-31.9 * var(--niche-logo-unit)); } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="Garnier"] { width: calc(87.4 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="Huda_Beauty-logo"] { width: calc(105.2 * var(--niche-logo-unit)); margin: 0 0 0 0; }
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="Logo_NEURAE"] { width: calc(119.3 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="medicube"] { width: calc(120.1 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="pyunkang-yul"] { width: calc(131.3 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="beauty"] .hero-marquee .logo-marquee__logo[src*="Ordinary"] { width: calc(88.2 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* boosted 1.2x */
+body[data-theme="espresso"][data-page="fashion"] .hero-marquee .logo-marquee__logo[src*="new_logo_nola_2_b9d31a99-7326-420c-a421-0125fe99b000"] { width: calc(86.6 * var(--niche-logo-unit)); margin: calc(-4.1 * var(--niche-logo-unit)) calc(-3.5 * var(--niche-logo-unit)) calc(-0.8 * var(--niche-logo-unit)) calc(-2.4 * var(--niche-logo-unit)); }
+body[data-theme="espresso"][data-page="fashion"] .hero-marquee .logo-marquee__logo[src*="oraije"] { width: calc(94.0 * var(--niche-logo-unit)); margin: calc(-21.5 * var(--niche-logo-unit)) calc(-14.7 * var(--niche-logo-unit)) calc(-15.3 * var(--niche-logo-unit)) calc(-14.3 * var(--niche-logo-unit)); }
+body[data-theme="espresso"][data-page="fashion"] .hero-marquee .logo-marquee__logo[src*="Superdry"] { width: calc(85.2 * var(--niche-logo-unit)); margin: 0 0 0 0; }
+body[data-theme="espresso"][data-page="fashion"] .hero-marquee .logo-marquee__logo[src*="tPk8-g9LSEa2"] { width: calc(110.6 * var(--niche-logo-unit)); margin: 0 0 0 0; }
+body[data-theme="espresso"][data-page="fashion"] .hero-marquee .logo-marquee__logo[src*="URv-Q2M9bRg9"] { width: calc(103.4 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* Atolea, boosted 1.2x */
+body[data-theme="espresso"][data-page="fashion"] .hero-marquee .logo-marquee__logo[src*="na-kd-logo"] { width: calc(98.0 * var(--niche-logo-unit)); margin: 0 0 0 0; }
+body[data-theme="espresso"][data-page="fashion"] .hero-marquee .logo-marquee__logo[src*="gina-tricot-logo"] { width: calc(94.2 * var(--niche-logo-unit)); margin: 0 0 0 0; }
+body[data-theme="espresso"][data-page="fashion"] .hero-marquee .logo-marquee__logo[src*="charles-keith-logo"] { width: calc(180.6 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* Charles & Keith, boosted 1.2x */
+body[data-theme="espresso"][data-page="fashion"] .hero-marquee .logo-marquee__logo[src*="aupen-logo"] { width: calc(103.0 * var(--niche-logo-unit)); margin: 0 0 0 0; }
+body[data-theme="espresso"][data-page="lifestyle"] .hero-marquee .logo-marquee__logo[src*="3a0bfbd16500eefb8828b5a3b113d146"] { width: calc(101.3 * var(--niche-logo-unit)); margin: calc(-15.6 * var(--niche-logo-unit)) calc(-16.1 * var(--niche-logo-unit)) calc(-13.9 * var(--niche-logo-unit)) calc(-17.8 * var(--niche-logo-unit)); } /* Monopoly GO, boosted 1.2x */
+body[data-theme="espresso"][data-page="lifestyle"] .hero-marquee .logo-marquee__logo[src*="5bbc5f3f81817"] { width: calc(162.3 * var(--niche-logo-unit)); margin: calc(-25.4 * var(--niche-logo-unit)) calc(-53.4 * var(--niche-logo-unit)) calc(-24.0 * var(--niche-logo-unit)) calc(-51.7 * var(--niche-logo-unit)); }
+body[data-theme="espresso"][data-page="lifestyle"] .hero-marquee .logo-marquee__logo[src*="Deliveroo"] { width: calc(106.5 * var(--niche-logo-unit)); margin: 0 0 0 0; } /* boosted 1.25x */
+body[data-theme="espresso"][data-page="lifestyle"] .hero-marquee .logo-marquee__logo[src*="Logo_Yachts_de_Paris"] { width: calc(95.6 * var(--niche-logo-unit)); margin: calc(-1.0 * var(--niche-logo-unit)) 0 0 0; } /* boosted another 1.2x */ /* boosted 1.3x */
+body[data-theme="espresso"][data-page="lifestyle"] .hero-marquee .logo-marquee__logo[src*="Logo_vertical_MAGNIFISENS_NoirOr_fond_blanc-carre"] { width: calc(143.2 * var(--niche-logo-unit)); margin: calc(-27.5 * var(--niche-logo-unit)) calc(-14.3 * var(--niche-logo-unit)) calc(-26.8 * var(--niche-logo-unit)) calc(-14.3 * var(--niche-logo-unit)); } /* Maison Magnifisens, boosted 1.2x */ /* boosted 1.45x: thin drawing with tiny text */
+body[data-theme="espresso"][data-page="lifestyle"] .hero-marquee .logo-marquee__logo[src*="paris-jadore-logo"] { width: calc(112 * var(--niche-logo-unit)); margin: 0; } /* Hotel Paris J'Adore */
+body[data-theme="espresso"][data-page="lifestyle"] .hero-marquee .logo-marquee__logo[src*="lays-logo"] { width: calc(70 * var(--niche-logo-unit)); margin: 0; } /* Lay's: round emblem */
+body[data-theme="espresso"][data-page="lifestyle"] .hero-marquee .logo-marquee__logo[src*="logo-violet"] { width: calc(77.4 * var(--niche-logo-unit)); margin: 0 0 0 0; }
+body[data-theme="espresso"][data-page="lifestyle"] .hero-marquee .logo-marquee__logo[src*="newmoca"] { width: calc(107.0 * var(--niche-logo-unit)); margin: calc(-17.2 * var(--niche-logo-unit)) calc(-1.6 * var(--niche-logo-unit)) calc(-13.1 * var(--niche-logo-unit)) calc(-2.0 * var(--niche-logo-unit)); }
+
+/* ---------------------------------------------------------
+   influence.html specifics
+--------------------------------------------------------- */
+
+/* Stats on top in one row (5 across, vertical lines between them), then
+   the intro paragraph centred below (no divider between the two).
+   At 1000px and below it becomes a 2-column grid with lines between cells. */
+body[data-theme="espresso"] .stats-pair {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+body[data-theme="espresso"] .stats-pair__intro {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+  color: var(--text-dark);
+  max-width: 760px;
+  margin: clamp(2rem, 4vw, 2.75rem) 0 0;
+  text-align: center;
+}
+
+body[data-theme="espresso"] .stat-grid--pair {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  width: 100%;
+}
+
+/* Small source note under the stats ("*Last 60 days on TikTok.") */
+body[data-theme="espresso"] .stats-note {
+  margin: 0.9rem 0 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--text-light);
+  text-align: center;
+}
+
+body[data-theme="espresso"] .stat-grid--pair .stat-tile {
+  max-width: none;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0.25rem clamp(0.75rem, 2vw, 1.5rem);
+  text-align: center;
+}
+
+body[data-theme="espresso"] .stat-grid--pair .stat-tile + .stat-tile {
+  border-left: 1px solid var(--stat-rule);
+}
+
+/* Mid widths: tighter labels so all 4 still fit on one line each */
+@media (max-width: 1199px) {
+  body[data-theme="espresso"] .stats-pair .stat-grid--pair .stat-tile .stat-label {
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 1000px) {
+  body[data-theme="espresso"] .stat-grid--pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body[data-theme="espresso"] .stat-grid--pair .stat-tile {
+    padding: 1.25rem 0.75rem;
+  }
+  body[data-theme="espresso"] .stat-grid--pair .stat-tile + .stat-tile {
+    border-left: 0;
+  }
+  body[data-theme="espresso"] .stat-grid--pair .stat-tile:nth-child(even) {
+    border-left: 1px solid var(--stat-rule);
+  }
+  body[data-theme="espresso"] .stat-grid--pair .stat-tile:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--stat-rule);
+  }
+}
+
+/* Numbers in Cormorant (the heading font), upright, lining figures */
+body[data-theme="espresso"] .stat-grid--pair .stat-tile .stat-value {
+  font-family: var(--font-display); /* Cormorant, same as the headings */
+  font-style: normal;
+  font-weight: 500;
+  font-variant-numeric: lining-nums;
+  font-size: clamp(1.6rem, 2.3vw, 2rem);
+  line-height: 1;
+  color: var(--text-dark); /* brown, quieter than the gold used elsewhere */
+}
+
+/* Labels in Cormorant too (overrides the shared Bodoni Moda SC rule);
+   a touch larger and heavier since Cormorant runs small and thin */
+body[data-theme="espresso"] .stat-grid--pair .stat-tile .stat-label {
+  margin-top: 0.6rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  font-variant-numeric: lining-nums;
+  white-space: nowrap; /* one-line labels; the row folds to 2 columns before they'd collide */
+}
+
+/* "Why Work With Me" as a numbered list: 01 / 02 / 03 on the left, the
+   point on the right, plain lines dividing the rows (no cards) */
+body[data-theme="espresso"] .why-list {
+  list-style: none;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+body[data-theme="espresso"] .why-list li {
+  display: grid;
+  grid-template-columns: clamp(2.5rem, 5vw, 3.5rem) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding: clamp(1.4rem, 3vw, 2rem) 0;
+}
+
+body[data-theme="espresso"] .why-list li + li {
+  border-top: 1px solid var(--why-rule);
+}
+
+/* Same number format as the stats (Cormorant 500, lining, same size),
+   kept in the light gold accent */
+body[data-theme="espresso"] .why-list__num {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 500;
+  font-variant-numeric: lining-nums;
+  font-size: clamp(1.6rem, 2.3vw, 2rem);
+  line-height: 1;
+  color: var(--gold);
+}
+
+body[data-theme="espresso"] .why-list p {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+/* "Follow on TikTok" row: 3 pinned + 3 latest posts (9:16) in a single
+   line. All 6 fit across on desktop; below 900px the row scrolls
+   sideways (scroll-snap) instead of wrapping. */
+body[data-theme="espresso"] .tiktok-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.75rem, 1.4vw, 1.1rem);
+}
+
+body[data-theme="espresso"] .tiktok-tile {
+  aspect-ratio: 9 / 16;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--secondary);
+  box-shadow: var(--shadow);
+}
+
+body[data-theme="espresso"] button.tiktok-tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+body[data-theme="espresso"] .tiktok-tile img,
+body[data-theme="espresso"] .tiktok-tile iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Covers fully black & white with soft contrast, uniform across all six;
+   slightly lifted on hover/focus. The playing video (iframe) stays in
+   its normal colours. */
+body[data-theme="espresso"] .tiktok-tile img {
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05) brightness(1.04);
+  transition: transform 0.5s ease, filter 0.4s ease;
+}
+
+body[data-theme="espresso"] button.tiktok-tile:hover img,
+body[data-theme="espresso"] button.tiktok-tile:focus-visible img,
+body[data-theme="espresso"] button.tiktok-tile:active img {
+  transform: scale(1.04);
+  filter: sepia(8%) contrast(1.04) saturate(0.95); /* colour back on hover, like pillars/path cards */
+}
+
+body[data-theme="espresso"] button.tiktok-tile:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Small frosted round play button in the cover's top-right corner (same
+   badge as the niche-page videos) */
+body[data-theme="espresso"] .tiktok-tile__play {
+  position: absolute;
+  z-index: 2; /* above the palette overlay */
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: background var(--transition);
+}
+
+body[data-theme="espresso"] .tiktok-tile__play::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent #ffffff;
+}
+
+body[data-theme="espresso"] button.tiktok-tile:hover .tiktok-tile__play {
+  background: rgba(255, 255, 255, 0.36);
+}
+
+/* Niche-page videos: small frosted play badge (same style as the TikTok
+   tiles' button, scaled down) in the top-right corner; switches to a
+   pause sign while the video plays. Added by initPortfolioVideos(). */
+body[data-theme="espresso"] .video-card {
+  position: relative;
+}
+
+body[data-theme="espresso"] .video-card__play {
+  position: absolute;
+  z-index: 2;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  pointer-events: none; /* clicks go to the video underneath */
+  transition: background var(--transition);
+}
+
+/* Cover image laid over each niche video (see initPortfolioVideos):
+   shown until the video actually starts playing, and again whenever it is
+   reset (another video started, or scrolled away). Clicks pass through. */
+body[data-theme="espresso"] .video-card__cover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+body[data-theme="espresso"] .video-card.has-started .video-card__cover {
+  display: none;
+}
+
+body[data-theme="espresso"] .video-card__play::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 5px 0 5px 8px;
+  border-color: transparent transparent transparent #ffffff;
+}
+
+body[data-theme="espresso"] .video-card:hover .video-card__play {
+  background: rgba(255, 255, 255, 0.36);
+}
+
+/* Pause sign: two bars (one element + its shadow) */
+body[data-theme="espresso"] .video-card.is-playing .video-card__play::after {
+  left: 50%;
+  width: 3px;
+  height: 10px;
+  border: 0;
+  background: #ffffff;
+  transform: translate(calc(-50% - 2.5px), -50%);
+  box-shadow: 5px 0 0 #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-theme="espresso"] .tiktok-tile img {
+    transition: none;
+  }
+  body[data-theme="espresso"] button.tiktok-tile:hover img {
+    transform: none;
+  }
+}
+
+/* Same size as the home page's "Read more" line (.branding-copy) */
+body[data-theme="espresso"] .tiktok-more {
+  margin-top: clamp(1.75rem, 3.5vw, 2.5rem);
+  text-align: center;
+  font-size: 1.15rem;
+}
+
+@media (max-width: 900px) {
+  body[data-theme="espresso"] .tiktok-grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: clamp(150px, 40vw, 220px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding-bottom: 1.5rem; /* room for the tile shadow */
+  }
+  body[data-theme="espresso"] .tiktok-grid::-webkit-scrollbar {
+    display: none;
+  }
+  /* Lighter shadow: the scroll container clips anything past its padding */
+  body[data-theme="espresso"] .tiktok-tile {
+    scroll-snap-align: start;
+    box-shadow: 0 8px 16px rgba(43, 43, 43, 0.08);
+  }
+}
+
+/* Stat numbers get the gold "signature" pop */
+body[data-theme="espresso"] .stat-tile .stat-value {
+  color: #9C7A3D;
+}
+
+/* "What I Offer" as plain rows (no boxes): thin lines divide the
+   offers, same hairline as the stats on light sections */
+body[data-theme="espresso"] .offer-list {
+  gap: 0;
+}
+
+body[data-theme="espresso"] .offer-row {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 1.3rem 0.25rem;
+}
+
+body[data-theme="espresso"] .offer-row + .offer-row {
+  border-top: 1px solid var(--stat-rule);
+}
+
+/* Content-pillar cards: original square photo (same crop as before),
+   with a thin cream frame around it instead of the old wide padding,
+   and a tighter text block below */
+body[data-theme="espresso"] .pillar-card {
+  padding: 0.6rem;
+  gap: 0;
+  border-radius: var(--radius-xl);
+  background: #FFFFFF; /* pure white frame (was the cream --white) */
+  border-color: #FFFFFF;
+}
+
+body[data-theme="espresso"] .pillar-card__media {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+}
+
+body[data-theme="espresso"] .pillar-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hair: keep the face in the upper part of the square crop */
+body[data-theme="espresso"] .pillar-card__media .pillar-card__img--hair {
+  object-position: center top; /* keep the whole scrunchie in frame */
+}
+
+/* Beauty: crop halfway between the original centred crop (50%) and a
+   top-anchored one (0%), so the head stays in frame without hugging the top */
+body[data-theme="espresso"] .pillar-card__media .pillar-card__img--beauty {
+  object-position: center 25%;
+}
+
+/* Fashion: square crop starts just above the head (head top sits ~112px
+   down the 1000x1250 photo; 31% of the 250px overflow = ~78px trimmed),
+   so less empty wall above and more of the outfit below */
+body[data-theme="espresso"] .pillar-card__media .pillar-card__img--lifestyle {
+  object-position: center 55%; /* square crop: Eiffel Tower + Mia at the table */
+}
+
+body[data-theme="espresso"] .pillar-card__media .pillar-card__img--fashion {
+  object-position: center 80%; /* square crop: Mia by the column, less empty arcade above her */
+}
+
+body[data-theme="espresso"] .pillar-card__body {
+  padding: 1.1rem 0.9rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+body[data-theme="espresso"] .pillar-card__body p {
+  margin: 0;
+}
+
+/* Content-pillar thumbnails + portrait: same warm grade as the hero/path cards */
+body[data-theme="espresso"] .category-thumb,
+body[data-theme="espresso"] .about-image img,
+body[data-theme="espresso"] .split-media img {
+  filter: sepia(8%) contrast(1.04) saturate(0.95);
+}
+
+/* UGC "Featured Work" cards: pure white frame (matches pillar/path cards)
+   and square corners on both the card and the cover image */
+body[data-theme="espresso"] .project-card.featured {
+  background: #FFFFFF;
+  border-color: #FFFFFF;
+  border-radius: 0;
+}
+
+body[data-theme="espresso"] .project-card.featured .video-card {
+  border-radius: 0;
+  aspect-ratio: 1 / 1; /* square covers */
+  overflow: hidden;
+}
+
+body[data-theme="espresso"] .project-card.featured .video-card img {
+  object-position: center top; /* keep heads in frame when cropping */
+}
+
+/* Fashion cover: crop from the centre so the Sézane bag stays in frame */
+body[data-theme="espresso"] .project-card.featured[href="fashion.html"] .video-card img {
+  object-position: center 60%;
+}
+
+/* UGC "Featured Work" covers: black & white at rest, colour fades back in
+   on hover / keyboard focus / tap (the lift + zoom from styles.css stay) */
+body[data-theme="espresso"] .project-card.featured .video-card img {
+  filter: grayscale(1) contrast(1.05) brightness(1.04);
+  transition: transform 0.5s ease, filter 0.4s ease;
+}
+
+body[data-theme="espresso"] .project-card.featured:hover .video-card img,
+body[data-theme="espresso"] .project-card.featured:focus-visible .video-card img,
+body[data-theme="espresso"] .project-card.featured:active .video-card img {
+  filter: sepia(8%) contrast(1.04) saturate(0.95);
+}
+
+/* Content-pillar photos (Influence) + UGC niche cards: shown in their
+   original colour (client, 2026-10-08); hover/tap keeps the slight zoom */
+body[data-theme="espresso"] .pillar-card__media img {
+  filter: none;
+  transition: transform 0.5s ease;
+}
+
+body[data-theme="espresso"] .pillar-card:hover .pillar-card__media img,
+body[data-theme="espresso"] .pillar-card:active .pillar-card__media img {
+  filter: none;
+  transform: scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body[data-theme="espresso"] .pillar-card:hover .pillar-card__media img,
+  body[data-theme="espresso"] .pillar-card:active .pillar-card__media img {
+    transform: none;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   Screen-fit rule (client, 2026-10-04): on a laptop/desktop screen every
+   section — heroes included — must fit inside one screen below the fixed
+   header, never partly cut off. --fit-h is that visible height; spacing
+   and media below are sized from it (svh, so it tracks the real window),
+   with floors so short windows still stay readable. Phones/tablets
+   (<= 900px) keep their normal stacked flow.
+--------------------------------------------------------- */
+@media (min-width: 901px) {
+  /* --header-real is set by site.js (the header renders taller than
+     --header-height); content starts right below it, not under it */
+  body[data-theme="espresso"] {
+    --fit-h: calc(100svh - var(--header-real, var(--header-height)));
+    padding-top: var(--header-real, var(--header-height));
+    --fit-pad-top: clamp(2rem, 6svh, 5rem);
+    --fit-pad-bottom: clamp(2.25rem, 7svh, 6.5rem);
+  }
+
+  body[data-theme="espresso"] .section {
+    padding: var(--fit-pad-top) 0 var(--fit-pad-bottom);
+    scroll-margin-top: var(--header-real, var(--header-height));
+  }
+
+  body[data-theme="espresso"] .section-head {
+    margin-bottom: clamp(1rem, 3svh, 2rem);
+  }
+
+  /* Heroes: exactly one screen tall (home/influence/ugc/about), portrait
+     capped so it never pushes the section past the fold */
+  body[data-theme="espresso"] .hero {
+    min-height: var(--fit-h);
+    padding-block: 0;
+    box-sizing: border-box;
+  }
+
+  body[data-theme="espresso"] .hero-portrait {
+    margin-block: 0;
+  }
+
+  /* Hero photo runs the full visible height: flush under the header and
+     down to the bottom of the screen, no top/bottom margin */
+  body[data-theme="espresso"] .hero-portrait img {
+    width: 100%;
+    height: var(--fit-h);
+    max-height: none;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  /* "Start a Project" form: tighter rhythm and a shorter message box */
+  body[data-theme="espresso"] .contact-form {
+    gap: clamp(0.8rem, 2.2svh, 1.5rem);
+    margin-bottom: clamp(1.2rem, 3svh, 2.5rem);
+  }
+
+  body[data-theme="espresso"] .contact-form textarea {
+    height: clamp(96px, 15svh, 150px);
+  }
+
+  /* Niche heroes (hair/beauty/fashion/lifestyle): exactly one screen
+     tall; the brand strip keeps its natural height at the bottom and the
+     photo fills everything above it, flush under the header */
+  body[data-theme="espresso"]:is([data-page="hair"], [data-page="beauty"], [data-page="fashion"], [data-page="lifestyle"]) section.hero.section-cream {
+    height: var(--fit-h);
+    align-items: stretch;
+  }
+
+  body[data-theme="espresso"]:is([data-page="hair"], [data-page="beauty"], [data-page="fashion"], [data-page="lifestyle"]) .hero-grid {
+    grid-template-rows: minmax(0, 1fr) auto;
+  }
+
+  body[data-theme="espresso"]:is([data-page="hair"], [data-page="beauty"], [data-page="fashion"], [data-page="lifestyle"]) .hero-portrait {
+    position: relative;
+    align-self: stretch;
+    min-height: 0;
+  }
+
+  body[data-theme="espresso"]:is([data-page="hair"], [data-page="beauty"], [data-page="fashion"], [data-page="lifestyle"]) .hero-portrait img {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+
+  /* Niche-page video rows (9:16): videos keep their ratio but are capped
+     in height (narrower, centred in their column) so heading + videos +
+     captions fit one screen */
+  body[data-theme="espresso"] .project-card:not(.featured) .video-card {
+    width: min(100%, calc((var(--fit-h) - 320px) * 9 / 16));
+    margin-inline: auto;
+  }
+
+  /* Split sections (UGC "Services") and the About page: the photo is
+     capped to the screen height instead of growing with its column */
+  body[data-theme="espresso"] .split-media img,
+  body[data-theme="espresso"] .about-image img {
+    max-height: calc(var(--fit-h) - var(--fit-pad-top) - var(--fit-pad-bottom));
+    object-position: center top;
+  }
+
+  body[data-theme="espresso"] .split-media {
+    align-self: start;
+  }
+
+  /* About: wider text column and tighter paragraph spacing so the full
+     bio sits beside the portrait in one screen */
+  body[data-theme="espresso"] .about-container {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  }
+
+  body[data-theme="espresso"] .about-image {
+    margin-block: 0;
+  }
+
+  body[data-theme="espresso"] .about-image img {
+    width: 100%;
+    object-fit: cover;
+  }
+
+  body[data-theme="espresso"] .about-text {
+    gap: clamp(0.35rem, 1.2svh, 0.7rem);
+  }
+
+  body[data-theme="espresso"] .about-text p {
+    margin-bottom: 0;
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+
+  /* Hair "Case Study: Kitsch": intro text on the left, the four videos +
+     stats on the right (stacked, the section was well over a screen) */
+  body[data-theme="espresso"] #case-study .section-inner {
+    display: grid;
+    grid-template-columns: minmax(300px, 1.3fr) minmax(0, 2.4fr);
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: start;
+  }
+
+  /* Heading + intro text form one block on the left; the videos on the
+     right are centred in height on that whole block (the empty 1fr rows
+     above/below keep the left block together and centred if the videos
+     are the taller side) */
+  body[data-theme="espresso"] #case-study .section-inner {
+    grid-template-rows: 1fr auto auto 1fr;
+  }
+
+  body[data-theme="espresso"] #case-study .section-head {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  /* Heading wraps inside the narrow left column ("Case Study:" / "Kitsch")
+     instead of running into the videos */
+  body[data-theme="espresso"] #case-study .section-head h2 {
+    white-space: normal;
+    line-height: 1.15;
+  }
+
+  body[data-theme="espresso"] #case-study .case-grid {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  body[data-theme="espresso"] #case-study .project-grid.spaced {
+    grid-column: 2;
+    grid-row: 1 / -1;
+    align-self: center;
+  }
+
+  body[data-theme="espresso"] #case-study .project-grid.spaced {
+    margin-top: 0;
+    gap: clamp(0.6rem, 1.2vw, 1rem);
+  }
+
+  body[data-theme="espresso"] #case-study .case-grid p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  body[data-theme="espresso"] #case-study .project-card .video-card,
+  body[data-theme="espresso"] #case-study .project-metrics-frame {
+    width: min(100%, calc((var(--fit-h) - 220px) * 9 / 16));
+    margin-inline: auto;
+  }
+
+  /* Numbered lists ("Why Work With Me", "How to Work With Me"): row
+     spacing follows screen height rather than width */
+  body[data-theme="espresso"] .why-list li {
+    padding-block: clamp(0.9rem, 2.6svh, 2rem);
+  }
+
+  /* Influence content pillars: photo box capped in height (cropped wider
+     than square on short screens) */
+  body[data-theme="espresso"] .pillar-card__media {
+    aspect-ratio: auto;
+    height: clamp(160px, calc(var(--fit-h) - 475px), 320px);
+  }
+
+}
+
+/* ---------------------------------------------------------
+   UGC + Influence pages: sections alternate brown / white and end on a
+   brown section, so "Start a Project" is white here instead of the usual
+   brown. Dark-on-light versions of the form, button and link.
+--------------------------------------------------------- */
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact.section {
+  background: var(--bg-dark);
+  --text: var(--text-dark);
+  --text-muted: var(--text-light);
+  --gold: #9C7A3D;
+  --heading-color: var(--text-dark);
+}
+
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .contact-form input,
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .contact-form textarea,
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .contact-form input:focus,
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .contact-form textarea:focus {
+  background: #FFFFFF;
+  border-color: var(--stat-rule);
+  color: var(--text-dark);
+}
+
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .contact-form input:focus,
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .contact-form textarea:focus {
+  border-color: var(--gold);
+}
+
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .header-cta {
+  color: var(--text-dark);
+  border-color: var(--text-dark);
+}
+
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .header-cta:hover {
+  background: var(--text-dark);
+  color: #FFF5E6;
+}
+
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .contact-links a {
+  color: var(--text-dark);
+}
+
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .contact-links img {
+  filter: none; /* native dark-brown icon on white */
+}
+
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .contact-links a:hover {
+  background: var(--text-dark);
+  border-color: var(--text-dark);
+  color: #FFF5E6;
+}
+
+body[data-theme="espresso"]:is([data-page="ugc"], [data-page="influence"], [data-page="about"], [data-page="hair"], [data-page="lifestyle"]) #contact .contact-links a:hover img {
+  filter: brightness(0) invert(1);
+}
+
+/* Services accordion on a brown section: the details element re-declares
+   dark --text in styles.css, so give it the cream/tan pair back */
+body[data-theme="espresso"] .section-cream .services-list details {
+  --text: #FFF5E6;
+  --text-muted: #E3C9A6;
+}
+
+/* Featured Work covers on a white section: white frames would vanish, so
+   outline them with the brown hairline and a softer shadow (same as the
+   Home path cards on white) */
+body[data-theme="espresso"] .section-beige .project-card.featured {
+  background: none;
+  border: 1px solid var(--stat-rule); /* thin outline + the same soft shadow as the Home path cards */
+  box-shadow: var(--card-shadow-light);
+}
+
+body[data-theme="espresso"] .section-beige .project-card.featured:hover {
+  box-shadow: 0 30px 60px rgba(56, 37, 20, 0.14);
+}
+
+/* Fashion page: outfit photos under the videos, 4 per row in a narrower
+   centred block (~200px wide each on a laptop: between the too-big 3-up
+   and too-small 8-up tries), 2 per row on phones; square corners, 3:4 */
+body[data-theme="espresso"] .fashion-photos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.6rem, 1.1vw, 1rem);
+  max-width: 100%; /* full container width: ~265px per photo on a laptop */
+  margin: clamp(1.6rem, 4svh, 3rem) auto 0;
+}
+
+body[data-theme="espresso"] .fashion-photo {
+  margin: 0;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+body[data-theme="espresso"] .fashion-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  body[data-theme="espresso"] .fashion-photos {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  body[data-theme="espresso"] .fashion-photos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* "Popular on TikTok" (influence.html): self-hosted videos in the TikTok
+   tiles, same click-to-play controller as the niche pages (they carry
+   .video-card). Cover in colour on hover/tap like the old tiles; view count
+   centred under each video. */
+body[data-theme="espresso"] .tiktok-tile.video-card {
+  position: relative;
+}
+
+body[data-theme="espresso"] .tiktok-tile.video-card video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body[data-theme="espresso"] .tiktok-tile.video-card:hover img,
+body[data-theme="espresso"] .tiktok-tile.video-card:active img {
+  filter: sepia(8%) contrast(1.04) saturate(0.95);
+}
+
+/* View count under each video (outside the frame) */
+body[data-theme="espresso"] .tiktok-item {
+  margin: 0;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+body[data-theme="espresso"] .tiktok-views {
+  margin-top: 0.55rem;
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+
+/* Influence "What I Offer": same split layout as the UGC Services section
+   (heading + list on the left, the same portrait at the same size on the
+   right; see #services rules and initServicesOffset in site.js) */
+body[data-theme="espresso"] #offers .split {
+  align-items: start;
+}
+
+@media (min-width: 901px) {
+  /* tighter rows so heading + 5 offers stay within the photo's height */
+  body[data-theme="espresso"] #offers .offer-row {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.6fr);
+    padding-block: clamp(0.55rem, 1.4svh, 0.95rem);
+  }
+
+  body[data-theme="espresso"] #offers .offer-row p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+}
+
+/* Logo on small screens: keep "MIA MIN" on one line and leave room for the
+   header button / menu toggle (the wide letter-spacing made it wrap) */
+body[data-theme="espresso"] .brand {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  body[data-theme="espresso"] .brand {
+    font-size: 1.45rem;
+    letter-spacing: 0.2em;
+  }
+}
+
+@media (max-width: 400px) {
+  body[data-theme="espresso"] .brand {
+    font-size: 1.25rem;
+    letter-spacing: 0.16em;
+  }
+}
+
+/* "What I Offer" on a brown section: cream titles/text, light dividers */
+body[data-theme="espresso"] .section-cream .offer-row h4 {
+  color: #FFF5E6;
+}
+
+body[data-theme="espresso"] .section-cream .offer-row p {
+  color: #E3C9A6;
+}
+
+body[data-theme="espresso"] .section-cream .offer-row + .offer-row {
+  border-top-color: var(--why-rule);
+}
+
+/* "Popular on TikTok" on a white section: brown view counts, softer
+   shadow than the one tuned for dark sections */
+body[data-theme="espresso"] .section-beige .tiktok-views {
+  color: var(--text-dark);
+}
+
+body[data-theme="espresso"] .section-beige .tiktok-tile {
+  box-shadow: var(--card-shadow-light);
+}
+
+/* Fashion page: videos cropped to 3:4 (same shape as the outfit photos
+   below) so the two rows line up; the cover image and the playing video
+   both fill the frame (centre crop) */
+body[data-theme="espresso"][data-page="fashion"] #fashion .project-card .video-card {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+}
+
+body[data-theme="espresso"][data-page="fashion"] #fashion .project-card .video-card video,
+body[data-theme="espresso"][data-page="fashion"] #fashion .project-card .video-card__cover {
+  object-fit: cover;
+}
+
+/* Same column gaps as the photo grid so videos and photos line up exactly,
+   and the same gap between the video row and the first photo row */
+body[data-theme="espresso"][data-page="fashion"] #fashion .project-grid {
+  gap: clamp(0.6rem, 1.1vw, 1rem);
+}
+
+body[data-theme="espresso"][data-page="fashion"] #fashion .fashion-photos {
+  margin-top: clamp(0.6rem, 1.1vw, 1rem);
+}
+
+/* Influence hero photo: the image file itself is already cropped/zoomed
+   around Mia, so the box crop is centred */
+body[data-theme="espresso"][data-page="influence"] .hero-portrait img {
+  object-position: center 60%;
+}
+
+/* UGC niche cards: same card as the Influence content pillars (white
+   frame, square photo, title + line), here as links to the niche pages.
+   On the white section they get the thin brown outline + soft shadow. */
+body[data-theme="espresso"] .niche-grid .pillar-card {
+  color: var(--text-dark);
+  text-decoration: none;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+body[data-theme="espresso"] .section-beige .niche-grid .pillar-card {
+  border: 1px solid var(--stat-rule);
+  box-shadow: var(--card-shadow-light);
+}
+
+body[data-theme="espresso"] .niche-grid .pillar-card:hover,
+body[data-theme="espresso"] .niche-grid .pillar-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 60px rgba(56, 37, 20, 0.14);
+}
+
+body[data-theme="espresso"] .niche-grid .pillar-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+body[data-theme="espresso"] .niche-grid .pillar-card__media img {
+  object-position: center 22%;
+}
+
+body[data-theme="espresso"] .niche-grid .pillar-card__body h3 {
+  color: var(--text-dark);
+  line-height: 1.15; /* two-line titles ("Beauty & Skincare") stay tight */
+  text-align: center;
+}
+
+body[data-theme="espresso"] .niche-grid .pillar-card__body p {
+  color: var(--text-light);
+}
+
+/* UGC hero photo (IMG_7379): crop anchored to the bottom so Mia is shown
+   head to toe in the tall hero frame */
+body[data-theme="espresso"][data-page="ugc"] .hero-portrait img {
+  object-position: center 20%;
+}
+
+/* About page: laid out like the other heroes (text left, photo right at
+   full screen height, flush under the header); drop the 2.5rem bottom
+   padding styles.css gives non-home heroes */
+@media (min-width: 901px) {
+  body[data-theme="espresso"][data-page="about"] #about.hero {
+    padding-block: 0;
+  }
+}
+
+/* About photo: the frame takes the photo's own 3:4 shape (full screen
+   height, narrower than the 50% column) so nothing is cropped and the
+   space above Mia's head and below her shoes stays visible */
+@media (min-width: 901px) {
+  body[data-theme="espresso"][data-page="about"] .hero-portrait {
+    justify-self: end;
+    width: auto;
+  }
+
+  body[data-theme="espresso"][data-page="about"] .hero-portrait img {
+    width: auto;
+    height: var(--fit-h);
+    aspect-ratio: 1000 / 1334;
+    object-position: center;
+  }
+}
+
+/* ---------------------------------------------------------
+   Phone fixes (client, 2026-10-08)
+--------------------------------------------------------- */
+
+/* Influence page was 900px wide on phones: the screen-reader-only text
+   under each TikTok view count was absolutely positioned against the
+   page, escaping the sideways-scrolling row. Contain it in its item. */
+body[data-theme="espresso"] .tiktok-item {
+  position: relative;
+}
+
+.visually-hidden {
+  top: 0;
+  left: 0;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 900px) {
+  /* Influence + UGC hero photos: show the lower part of the photo so Mia
+     sits in the middle of the shorter phone frame */
+  body[data-theme="espresso"]:is([data-page="influence"], [data-page="ugc"]) .hero-portrait img {
+    height: 380px; /* same as the phone photo box (max-height in styles.css) */
+    max-height: none;
+    object-fit: cover;
+    object-position: center 85%;
+  }
+}
+
+@media (max-width: 480px) {
+  body[data-theme="espresso"]:is([data-page="influence"], [data-page="ugc"]) .hero-portrait img {
+    height: 420px;
+  }
+}
+
+/* Phone-only copy of the TikTok icon + email, used on the niche heroes
+   (hair/beauty/fashion/lifestyle), which don't show it on desktop */
+.hero-contact--phone {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  /* Every hero on phones: TikTok icon + email centred under the
+     headline/subline */
+  body[data-theme="espresso"] .hero-contact {
+    display: inline-flex;
+    align-self: center;
+    margin-top: 1.4rem;
+  }
+
+  /* About on phones: no hero photo, the text stands on its own */
+  body[data-theme="espresso"][data-page="about"] .hero-portrait {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  /* Stacked hero: photo always above the headline + subline, including
+     the mirrored (text-first) heroes on Influence/About */
+  .hero-grid--reverse .hero-portrait {
+    order: -1;
+  }
+}

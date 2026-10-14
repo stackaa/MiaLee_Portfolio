@@ -1,0 +1,117 @@
+/* ---------------------------------------------------------
+   links.html — "Request the Portfolio" page for social media.
+   Built on the site's own components (#contact section,
+   .section-head, .contact-form, .button.header-cta, .brand)
+   from styles.css + index-theme.css; only the bits that page
+   doesn't have live here.
+--------------------------------------------------------- */
+
+body[data-theme="espresso"][data-page="links"] {
+  --option-border: rgba(255, 245, 230, 0.4); /* same as the form inputs */
+  min-height: 100svh;
+  background: var(--bg-light);
+  padding-top: 0; /* no site header on this page */
+}
+
+body[data-theme="espresso"][data-page="links"] #contact.links {
+  min-height: 100svh;
+  padding: 2rem 0;
+}
+
+body[data-page="links"] .section-head {
+  margin-bottom: 1.4rem;
+}
+
+.links__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.4rem;
+}
+
+.links__avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%; /* true circle, like the round icons */
+  object-fit: cover;
+  object-position: center 20%;
+  border: 1px solid var(--option-border);
+  margin-bottom: 1rem;
+}
+
+body[data-theme="espresso"] .links__intro .brand {
+  font-size: clamp(30px, 9vw, 44px); /* bigger than the header wordmark */
+  line-height: 1.2;
+  padding-left: 0.3em; /* balance the trailing letter-spacing */
+}
+
+.links__tagline {
+  margin-top: 0.4rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+body[data-theme="espresso"] .links-form button {
+  align-self: stretch;
+  border-radius: var(--radius-sm); /* square, like the rest of the site */
+  padding: 0.95rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* Inputs at 16px minimum so iPhone Safari doesn't zoom in on focus */
+body[data-theme="espresso"][data-page="links"] .contact-form input:not([type="radio"]) {
+  font-size: max(1.1rem, 16px);
+}
+
+/* Phones: tighter so the whole form sits close to one screen, and the
+   title may wrap instead of overflowing on narrow screens */
+@media (max-width: 640px) {
+  body[data-theme="espresso"][data-page="links"] #contact.links {
+    padding: 1.6rem 0 2rem;
+  }
+
+  .links__intro {
+    margin-bottom: 1.4rem;
+  }
+
+  .links__avatar {
+    width: 88px;
+    height: 88px;
+    margin-bottom: 0.8rem;
+  }
+
+  body[data-page="links"] .section-head {
+    margin-bottom: 1.2rem;
+  }
+
+  body[data-theme="espresso"][data-page="links"] .section-head h2 {
+    font-size: clamp(1.3rem, 6.6vw, 2rem); /* one line down to 320px */
+  }
+
+  body[data-theme="espresso"][data-page="links"] .contact-form {
+    gap: 1.2rem;
+  }
+
+}
+
+.links-form__privacy {
+  margin: -0.4rem 0 0;
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--text-muted);
+  opacity: 0.8;
+}
+
+/* Anti-bot trap field: off-screen, never seen or focused by people */
+.links-form__trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}

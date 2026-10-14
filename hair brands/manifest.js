@@ -7,5 +7,7 @@ window.LOGO_MANIFESTS["hair brands"] = [
   "LOreal Professionnel logo - Brandlogos.net.svg",
   "redken-vector-logo.webp",
   "Sisley logo - Brandlogos.net.svg",
-  "Wella logo - Brandlogos.net.svg"
+  "Wella logo - Brandlogos.net.svg",
+  "authentic-beauty-concept-logo.webp",
+  "taft-logo.webp"
 ];

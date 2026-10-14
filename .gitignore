@@ -1,0 +1,13 @@
+.vercel
+.env*
+
+# Local-only: backups, originals, notes, OS files (not part of the website)
+.DS_Store
+.claude/
+Back up Media/
+CLAUDE.md
+Mia Min Media Kit.pdf
+media/videos/_hevc_originals_backup/
+media/videos/delete.mp4
+*.heic
+*.HEIC
